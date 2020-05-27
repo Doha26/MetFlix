@@ -1,10 +1,12 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import {StatusBar} from 'react-native';
+import Navigator from '~/navigation/index';
 
 const App = () => (
-  <View>
-    <Text>Welcome to MetFlix</Text>
-  </View>
+  <>
+    <StatusBar/>
+    <Navigator/>
+  </>
 );
 
 export default App;
