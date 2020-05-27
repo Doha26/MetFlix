@@ -26,15 +26,15 @@ const Container = ({
                      children,
                      transparency,
                    }: {
-  theme: any;
-  onScroll: () => void;
-  children: React.ReactNode;
-  transparency: boolean;
+  theme?: any;
+  onScroll?: (offset: number) => void;
+  children?: React.ReactNode;
+  transparency?: boolean;
 }) => (
   <SafeAreaView style={{flex: 1, backgroundColor: !transparency ? theme.background : 'rgba(0, 0, 0, 0.7)'}}>
     <ScrollView
       scrollEventThrottle={1}
-      onScroll={({nativeEvent}) => onScroll(nativeEvent.contentOffset.y)}
+      onScroll={({nativeEvent}) => onScroll ? onScroll(nativeEvent.contentOffset.y) : null}
       style={{flex: 1}}
     >
       {children}

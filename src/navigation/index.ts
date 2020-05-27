@@ -6,7 +6,7 @@ const navigator = createSwitchNavigator({
   home: Home,
   splash: SplashScreen,
 }, {
-  initialRouteName: 'splash', // Initial route
+  initialRouteName: 'home', // Initial route
 });
 
 export default createAppContainer(navigator);

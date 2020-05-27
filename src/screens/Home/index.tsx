@@ -1,12 +1,12 @@
 import React from 'react';
-import {View} from 'react-native';
 import Text from '~/components/common/Text';
+import Container from '~/components/common/Container';
 
 const Home = () => {
   return (
-    <View>
+    <Container>
       <Text> Home</Text>
-    </View>
+    </Container>
   );
 };
 
