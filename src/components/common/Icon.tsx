@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { default as Feather } from 'react-native-vector-icons/Feather';
-import Colors from '~/theming/colors'
+import {default as Feather} from 'react-native-vector-icons/Feather';
+import Colors from '~/theming/colors';
 
 const propTypes = {
   color: PropTypes.string,
@@ -14,7 +14,10 @@ const defaultProps = {
   large: false,
 };
 
-const Icon = ({ name, color, large }: {name: string; color: string; large?: string}) => (
+const Icon = ({
+                name,
+                color, large,
+              }: {name: string; color: string; large?: string}) => (
   <Feather
     name={name}
     size={!large ? 20 : 28}

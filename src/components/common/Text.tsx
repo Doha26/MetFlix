@@ -1,5 +1,5 @@
 import React from 'react';
-import {Shape, Text as RNText} from 'react-native';
+import {Text as RNText} from 'react-native';
 import PropTypes from 'prop-types';
 
 const propTypes = {
@@ -31,7 +31,7 @@ const Text = ({
                 ...props
               }: {
   bold?: boolean;
-  color: string;
+  color?: string;
   large?: boolean;
   small?: boolean;
   theme?: any;
@@ -40,7 +40,7 @@ const Text = ({
   extraLarge?: boolean;
 
 }) => {
-  const textStyle = [{color: color || theme.secondaryColor, fontSize: 18}];
+  const textStyle = [{color: color ? color || theme.secondaryColor: null, fontSize: 18}];
 
   if (small) {
     textStyle.push({color: undefined, fontSize: 16});

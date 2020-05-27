@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {View, StyleSheet} from 'react-native';
+import * as Progress from 'react-native-progress';
 import Colors from '~/theming/colors';
 import Logo from '~/components/common/Logo';
-import * as Progress from 'react-native-progress';
 
-const SplashScreen = ({navigation: {navigate}}) => {
+const SplashScreen = ({navigation}) => {
 
   // State initialisation with default values
   const [progress, setProgress] = useState(0);
@@ -14,12 +14,12 @@ const SplashScreen = ({navigation: {navigate}}) => {
   const increaseProgressValue = () => {
 
     setTimeout(function(){
-      let st = setInterval(function(){
+      const st = setInterval(function(){
        i += 0.1;
        setProgress(i);
         if (i >=1){
           clearInterval(st);
-
+          navigation.navigate('home')
         }
       },300) // Increase progressBar value each 300 ms until 1
     },1000); // Start progression after 300 ms
@@ -32,7 +32,10 @@ const SplashScreen = ({navigation: {navigate}}) => {
   return (
     <View style={styles.container}>
       <Logo/>
-      <Progress.Bar borderColor={Colors.lightgray} progress={progress} width={230} height={4} color={Colors.lightgray}/>
+      <Progress.Bar
+        borderColor={Colors.lightgray}
+        progress={progress} width={230}
+        height={4} color={Colors.lightgray}/>
     </View>
   );
 };
