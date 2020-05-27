@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "composite": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "noEmit": true
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": ["src","./App.tsx","./index.js","metro.config.js"]
+
+}
