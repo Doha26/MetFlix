@@ -33,7 +33,6 @@ const List = ({
               }: {data: any; title: string; theme: any; subtitle: string; renderItem: any; keyExtractor: any; onViewAllPress: boolean}) => {
   const {textContainer, containerContentStyle} = styles;
 
-
   return (
     <View style={{marginBottom: 20}}>
       <View style={textContainer}>
