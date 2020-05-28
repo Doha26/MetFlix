@@ -47,11 +47,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginHorizontal: 10,
-    backgroundColor: Colors.white, height: 250, marginTop: 110,
+     height: 250, marginTop: 110,
   },
 
   imageWrapper: {
     flex: 1,
+    borderRadius:8,
     overflow: 'hidden',
     alignItems: 'center',
     backgroundColor: 'orange',
