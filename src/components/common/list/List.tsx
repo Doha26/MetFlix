@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {FlatList, TouchableOpacity, View} from 'react-native';
 import {withTheme} from '~/theming';
-import Text from '../Text';
+import Text from '~/components/common/Text';
+import Colors from '~/theming/colors';
 import {styles} from './styles';
 
 const propTypes = {
@@ -30,30 +31,30 @@ const List = ({
                 renderItem,
                 keyExtractor,
                 onViewAllPress,
-              }: {data: any; title: string; theme: any; subtitle: string; renderItem: any; keyExtractor: any; onViewAllPress: boolean}) => {
+              }: {data: any; title: string; theme: any; subtitle: string; renderItem: any; keyExtractor: any; onViewAllPress: () => void}) => {
   const {textContainer, containerContentStyle} = styles;
 
   return (
-    <View style={{marginBottom: 20}}>
+    <View style={{marginBottom: 20, marginVertical: 20, paddingVertical: 10}}>
       <View style={textContainer}>
         <View style={{flex: 1}}>
           <Text
             color={theme.primaryColor}
             large
+            style={{color: Colors.white}}
           >
             {title}
           </Text>
           {subtitle && (
-            <Text small>{subtitle}</Text>
+            <Text small style={{color: Colors.white}}>{subtitle}</Text>
           )}
         </View>
         {onViewAllPress && (
           <View>
             <TouchableOpacity
               onPress={onViewAllPress}
-              style={{paddingVertical: 5}}
-            >
-              <Text small>View all</Text>
+              style={{paddingVertical: 5}}>
+              <Text small style={{color: Colors.white}}>MORE</Text>
             </TouchableOpacity>
           </View>
         )}
@@ -66,7 +67,7 @@ const List = ({
         keyExtractor={keyExtractor}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={containerContentStyle}
-        ItemSeparatorComponent={() => <View style={{marginEnd: 20}}/>}
+        ItemSeparatorComponent={() => <View style={{marginEnd: 10}}/>}
       />
     </View>
   );
