@@ -49,11 +49,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: (width / 3) + 5,
-    backgroundColor: Colors.white, height: 250, marginTop: 10,
+    height: 250, marginTop: 10,
   },
 
   imageWrapper: {
     flex: 1,
+    borderRadius:8,
     overflow: 'hidden',
     alignItems: 'center',
     backgroundColor: 'orange',
