@@ -1,22 +1,24 @@
 import React from 'react';
 import {NavigationScreenProp, withNavigation} from 'react-navigation';
-import PropTypes from 'prop-types';
+import {Image, View, TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
+import Text from '~/components/common/Text';
 import {MovieType} from '~/types/Movie';
-import {TouchableOpacity, View, StyleSheet, Image} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Colors from '~/theming/colors';
-import Text from '~/components/common/Text';
 
 
- function Poster({movie, navigation : {navigate}}: {movie: MovieType; navigation: NavigationScreenProp<any>}) {
+const {width} = Dimensions.get('window');
 
-   const {
+function PopularTvItem({movie, navigation}: {
+  movie: MovieType; navigation: NavigationScreenProp<any>;
+}) {
+
+  const {
     title,
     posterPath,
     description,
   } = movie;
 
-  // @ts-ignore
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => console.log(1)} style={styles.imageWrapper}>
@@ -27,15 +29,15 @@ import Text from '~/components/common/Text';
         <LinearGradient
           locations={[0.1, 0.1, 1]}
           colors={[Colors.black00, Colors.black40, Colors.black100]} style={styles.detailsWraper}>
-          <Text small style={{color: Colors.darkGrey, fontWeight: '400', color: Colors.white}}>
-            {description}
-          </Text>
           <Text
             extraLarge
             numberOfLines={1}
             style={{fontSize: 22, marginTop: 3, fontWeight: '500', color: Colors.white}}
           >
             {title}
+          </Text>
+          <Text small style={{color: Colors.darkGrey, fontWeight: '400', color: Colors.white}}>
+            {description}
           </Text>
         </LinearGradient>
       </TouchableOpacity>
@@ -46,8 +48,8 @@ import Text from '~/components/common/Text';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginHorizontal: 10,
-    backgroundColor: Colors.white, height: 250, marginTop: 110,
+    width: (width / 3) + 5,
+    backgroundColor: Colors.white, height: 250, marginTop: 10,
   },
 
   imageWrapper: {
@@ -56,11 +58,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'orange',
     position: 'relative',
-    transform: [{scale: 1}],
   },
   image: {
     flex: 1,
-    width: '100%',
+    resizeMode:"stretch"
   },
   detailsWraper: {
     position: 'absolute',
@@ -73,4 +74,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withNavigation(Poster);
+export default withNavigation(PopularTvItem);

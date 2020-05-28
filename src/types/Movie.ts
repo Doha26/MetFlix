@@ -1,7 +1,7 @@
-export type IMovie = {
+export interface MovieType  {
   id: string;
   title: string;
-  posterPath?: string;
-  releaseDate: string;
+  posterPath: string;
+  releaseDate?: string;
   description?: string;
 }
