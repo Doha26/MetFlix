@@ -20,7 +20,7 @@ const Toutchable = ({
                       disabled,
                     }: {
   children: React.ReactNode;
-  onPress: void;
+  onPress: () => void;
   disabled: boolean;
 }) => (Platform.OS === 'android' && Platform.Version > 20
     ? (
