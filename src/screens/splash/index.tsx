@@ -3,8 +3,9 @@ import {View, StyleSheet} from 'react-native';
 import * as Progress from 'react-native-progress';
 import Colors from '~/theming/colors';
 import Logo from '~/components/common/Logo';
+import {NavigationScreenProp} from 'react-navigation';
 
-const SplashScreen = ({navigation}) => {
+const SplashScreen = ({navigation}: {navigation: NavigationScreenProp<any>}) => {
 
   // State initialisation with default values
   const [progress, setProgress] = useState(0);
@@ -13,6 +14,7 @@ const SplashScreen = ({navigation}) => {
   let i = 0;
   const increaseProgressValue = () => {
 
+    // simulate a loading animation before going to the next screen
     setTimeout(function(){
       const st = setInterval(function(){
        i += 0.1;

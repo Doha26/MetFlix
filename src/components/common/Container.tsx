@@ -16,8 +16,7 @@ const propTypes = {
 
 const defaultProps = {
   transparency: false,
-  onScroll: () => {
-  },
+  onScroll: () => {},
 };
 
 const Container = ({
