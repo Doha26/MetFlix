@@ -107,14 +107,11 @@ const Player = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
                             style={{width: orientationWidth, height: orientationHeight}}
                             ref={mPlayer}
                             source={video}
-                            //resizeMode="stretch"
                             progressUpdateInterval={250}
                             controls={true}
                             paused={paused}
-                            // seek={currentPosition}
                             onLoad={handleLoad}
                             onProgress={handleProgress}
-                            // onSeek={({currentTime: time}: { currentTime: number }) => setCurrentTime(time)}
                             onEnd={handleEnd}
                         />
                     </SharedElement>
