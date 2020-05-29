@@ -10,6 +10,7 @@ const propTypes = {
     onPress: PropTypes.func,
     title: PropTypes.string.isRequired,
     subTitle: PropTypes.string,
+    landScapeMode: PropTypes.bool
 };
 
 const defaultProps = {
@@ -18,8 +19,8 @@ const defaultProps = {
     title: string,
 };
 
-const HeaderBack = ({onPress, title, subtitle}: { onPress: () => void, title: string, subtitle?: string }) => (
-    <View style={styles.container}>
+const HeaderBack = ({onPress, title, subtitle, landScapeMode}: { onPress: () => void, title: string, subtitle?: string; landScapeMode?: boolean }) => (
+    <View style={[styles.container, {marginLeft: landScapeMode ? 40 : 16}]}>
         <TouchableOpacity onPress={onPress}>
             <Icon
                 large
@@ -27,11 +28,11 @@ const HeaderBack = ({onPress, title, subtitle}: { onPress: () => void, title: st
             />
         </TouchableOpacity>
         {subtitle ?
-            <View style={{flexDirection: 'column', marginLeft: 40, marginTop:15}}>
+            <View style={{flexDirection: 'column', marginLeft: 40, marginTop: 15}}>
                 <Text style={styles.titleStyle}>{title}</Text>
                 <Text style={styles.subtitleStyle}>{subtitle}</Text>
             </View>
-            : <Text style={[styles.titleStyle, {marginLeft:40}]}>{title}</Text>
+            : <Text style={[styles.titleStyle, {marginLeft: 40}]}>{title}</Text>
         }
     </View>
 );
@@ -40,7 +41,6 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         marginTop: 4,
-        marginLeft: 16,
         alignItems: 'center',
         zIndex: 1100,
         position: 'absolute'
