@@ -16,7 +16,7 @@ import styles from "~/screens/Detail/styles";
 const Detail = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
 
     const movie: MovieType = navigation.getParam('movie');
-    const {id} = movie;
+    const {id} = movie; // Destructuring the Movie Object to get the id poperty
 
     return (
         <SafeAreaProvider>
@@ -28,13 +28,11 @@ const Detail = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
                                 style={styles.image}
                                 source={require('~/assets/images/poster.jpeg')}
                             />
-
                         </View>
                     </View>
                 </SharedElement>
-                <StatusBar/>
                 <BlackOverlay/>
-                <HeaderBack onPress={() => navigation.pop()}/>
+                <HeaderBack onPress={() => navigation.goBack()} title={"Details"}/>
                 <TouchableOpacity style={styles.playerButton} activeOpacity={0.7}>
                     <Icon type={'antdesign'} size={26} color={Colors.white}
                           name={'caretright'}/>
@@ -70,6 +68,7 @@ const Detail = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
     )
 };
 
+// Add custom config for shared element transitions items
 Detail.sharedElements = (navigation: NavigationScreenProp<any>) => {
     const item = navigation.getParam('movie');
     return [
