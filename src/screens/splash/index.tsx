@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View} from 'react-native';
 import * as Progress from 'react-native-progress';
 import Colors from '~/theming/colors';
 import Logo from '~/components/common/Logo';
 import {NavigationScreenProp} from 'react-navigation';
+import styles from "~/screens/splash/styles";
 
 const SplashScreen = ({navigation}: {navigation: NavigationScreenProp<any>}) => {
 
@@ -41,17 +42,5 @@ const SplashScreen = ({navigation}: {navigation: NavigationScreenProp<any>}) => 
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: Colors.black,
-  },
-  loadingContainer: {
-    marginTop: 20,
-  },
-});
 
 export default SplashScreen;
