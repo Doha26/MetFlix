@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import {SafeAreaProvider} from "react-native-safe-area-context";
 import Container from '~/components/common/Container';
 import {View} from 'react-native';
 import StatusBar from '~/components/common/StatusBar';
@@ -22,10 +22,10 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
 
     const sampleMovie: MovieType = {
         id: 'xdtplkjg-oikjhgd',
-        title: 'Titre',
-        posterPath: require('~/assets/images/poster.jpeg'),
-        releaseDate: '20-40-2009',
-        description: 'Just an amazing movie',
+        original_title: 'Titre',
+        poster_path: require('~/assets/images/poster.jpeg'),
+        release_date: '20-40-2009',
+        overview: 'Just an amazing movie',
     };
 
     return (

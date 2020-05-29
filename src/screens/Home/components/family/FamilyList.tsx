@@ -3,68 +3,44 @@ import List from '~/components/common/list/List';
 import Loading from '~/components/common/Loading';
 import {MovieType} from '~/types/Movie';
 import FamilyItem from '~/screens/Home/components/family/FamilyItem';
+import useFetch from "~/hooks/use-fetch";
+import {QueryResponse} from "~/types/QueryResponse";
 
 const FamilyList = () => {
-  const loading: boolean = false;
 
-  const movies = [
-    {
-      id: 'xdtplkjg-oikjhgd',
-      title: 'Titre',
-      posterPath: require('~/assets/images/poster.jpeg'),
-      releaseDate: '20-40-2009',
-      description: 'Just an amazing movie',
-    },
-    {
-      id: 'xdtplkjg-ossxjhgd',
-      title: 'Titre2',
-      posterPath: require('~/assets/images/poster.jpeg'),
-      releaseDate: '20-40-2009',
-      description: 'Just an amazing movie2',
-    },
-    {
-      id: 'xdtpWEDSFRlkjg-oikjhgd',
-      title: 'Titre3',
-      posterPath: require('~/assets/images/poster.jpeg'),
-      releaseDate: '20-40-2009',
-      description: 'Just an amazing movie3',
-    },
-    {
-      id: 'xwwwdtplkjg-oikjhgd',
-      title: 'Titre4',
-      posterPath: require('~/assets/images/poster.jpeg'),
-      releaseDate: '20-40-2009',
-      description: 'Just an amazing movie4',
-    },
-    {
-      id: 'xdtpxsssslkjg-ossxjhgd',
-      title: 'Titre5',
-      posterPath: require('~/assets/images/poster.jpeg'),
-      releaseDate: '20-40-2009',
-      description: 'Just an amazing movie5',
-    },
-    {
-      id: 'xdtpWEDSFRlkjg-oikjhgdderrrrr',
-      title: 'Titre6',
-      posterPath: require('~/assets/images/poster.jpeg'),
-      releaseDate: '20-40-2009',
-      description: 'Just an amazing movie6',
-    },
-  ];
+    const family_genres_movies: any = [], family_flag = 'family';
 
-  return (loading
-      ? <Loading/>
-      : (
-        <List
-          data={movies}
-          title="Family"
-          onViewAllPress={() => {}}
-          keyExtractor={({id}: {id: string}) => String(id)}
-          subtitle="Enjoy tv with your family"
-          renderItem={({item}: {item: MovieType}) => <FamilyItem movie={item}/>}
-        />
-      )
-  );
+    //const loading = false;
+    const {response,loading} = useFetch({path: 'movie/popular'});
+    const { results: data } = response || {};
+
+    // In order to search genres family , first get the list of genres
+    const genres_response: QueryResponse = useFetch({path: 'genre/movie/list'});
+    const genres = genres_response?.response?.genres;
+
+    // Once having the list genres , filter the result to obtain the family genre object
+    const family_genre = genres?.find((genre: any) => genre.name.toLowerCase() == family_flag);
+
+    // filter all movies to obtain only those who include the family genre
+    data?.forEach((element: any) => {
+        if (element?.genre_ids?.includes(family_genre?.id)) {
+            family_genres_movies.push(element); // push the result in an array
+        }
+    });
+    return (loading
+            ? <Loading/>
+            : (
+                <List
+                    data={family_genres_movies}
+                    title="Family"
+                    onViewAllPress={() => {
+                    }}
+                    keyExtractor={({id}: { id: string }) => String(id)}
+                    subtitle="Enjoy tv with your family"
+                    renderItem={({item}: { item: MovieType }) => <FamilyItem movie={item}/>}
+                />
+            )
+    );
 };
 
 export default FamilyList;

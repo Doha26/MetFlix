@@ -3,64 +3,64 @@ import {Text as RNText} from 'react-native';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-  bold: PropTypes.bool,
-  large: PropTypes.bool,
-  small: PropTypes.bool,
-  color: PropTypes.string,
-  extraLarge: PropTypes.bool,
-  style: PropTypes.shape({}),
-  children: PropTypes.string.isRequired,
+    bold: PropTypes.bool,
+    large: PropTypes.bool,
+    small: PropTypes.bool,
+    color: PropTypes.string,
+    extraLarge: PropTypes.bool,
+    style: PropTypes.shape({}),
+    children: PropTypes.string,
 };
 
 const defaultProps = {
-  bold: false,
-  color: null,
-  style: null,
-  small: false,
+    bold: false,
+    color: null,
+    style: null,
+    small: false,
 };
 
 const Text = ({
-                bold,
-                color,
-                large,
-                small,
-                theme,
-                style,
-                children,
-                extraLarge,
-                ...props
+                  bold,
+                  color,
+                  large,
+                  small,
+                  theme,
+                  style,
+                  children,
+                  extraLarge,
+                  ...props
               }: {
-  bold?: boolean;
-  color?: string;
-  large?: boolean;
-  small?: boolean;
-  theme?: any;
-  style: any;
-  children: any;
-  extraLarge?: boolean;
+    bold?: boolean;
+    color?: string;
+    large?: boolean;
+    small?: boolean;
+    theme?: any;
+    style: any;
+    children: string | undefined;
+    extraLarge?: boolean;
 
 }) => {
-  const textStyle = [{color: color ? color || theme.secondaryColor: null, fontSize: 18}];
+    const textStyle = [{color: color ? color || theme.secondaryColor : null, fontSize: 18}];
 
-  if (small) {
-    textStyle.push({color: undefined, fontSize: 16});
-  } else if (large) {
-    textStyle.push({color: undefined, fontSize: 22});
-  } else if (extraLarge) {
-    textStyle.push({color: undefined, fontSize: 30});
-  }
-  if (bold) {
-    textStyle.push({color: undefined, fontSize: 18, fontWeight: 'bold'});
-  }
+    if (small) {
+        textStyle.push({color: undefined, fontSize: 16});
+    } else if (large) {
+        textStyle.push({color: undefined, fontSize: 22});
+    } else if (extraLarge) {
+        textStyle.push({color: undefined, fontSize: 30});
+    }
+    if (bold) {
+        textStyle.push({color: undefined, fontSize: 18, fontWeight: 'bold'});
+    }
 
-  return (
-    <RNText
-      {...props}
-      style={[textStyle, style]}
-    >
-      {children}
-    </RNText>
-  );
+    return (
+        <RNText
+            {...props}
+            style={[textStyle, style]}
+        >
+            {children}
+        </RNText>
+    );
 };
 
 Text.propTypes = propTypes;

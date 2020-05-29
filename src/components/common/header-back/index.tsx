@@ -8,7 +8,7 @@ import Colors from '~/theming/colors';
 
 const propTypes = {
     onPress: PropTypes.func,
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
     subTitle: PropTypes.string,
     landScapeMode: PropTypes.bool
 };
