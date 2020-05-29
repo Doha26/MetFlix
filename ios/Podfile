@@ -81,6 +81,8 @@ target 'MoviesApp' do
 
   pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
 
+  pod 'RNSharedElement', :path => '../node_modules/react-native-shared-element'
+
   target 'MoviesAppTests' do
     inherit! :complete
     # Pods for testing
