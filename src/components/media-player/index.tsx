@@ -36,9 +36,10 @@ export default function MediaPlayer({
     }, [currentPosition]);
 
     return (
-        <TouchableOpacity activeOpacity={0.5} style={{position:'absolute', bottom:100, right:10, left:10}} onPress={() => setHidePlayer(!hidePlayer)}>
+        <TouchableOpacity activeOpacity={0.5} style={{position: 'absolute', bottom: 100, right: 10, left: 10}}
+                          onPress={() => setHidePlayer(!hidePlayer)}>
             {!hidePlayer && (
-                <View style={{opacity:1}}>
+                <View style={{opacity: 1}}>
                     <>
                         {!hidePlayButton && (
                             <TouchableOpacity style={{opacity: 1, alignSelf: 'center'}}
@@ -64,7 +65,7 @@ export default function MediaPlayer({
                             minimumTrackTintColor="#FFFFFF"
                             maximumTrackTintColor="#000000"
                         />
-                        <Text small style={{color:Colors.white}}>{time}</Text>
+                        <Text small style={{color: Colors.white}}>{time}</Text>
                     </View>
                 </View>
             )}
