@@ -31,7 +31,7 @@ const HeaderBack = ({onPress, title, subtitle}: { onPress: () => void, title: st
                 <Text style={styles.titleStyle}>{title}</Text>
                 <Text style={styles.subtitleStyle}>{subtitle}</Text>
             </View>
-            : <Text style={styles.titleStyle}>{title}</Text>
+            : <Text style={[styles.titleStyle, {marginLeft:40}]}>{title}</Text>
         }
     </View>
 );
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     subtitleStyle: {
-        color: Colors.lightGrey,
+        color: Colors.white,
         fontSize: 17,
         fontWeight: '400'
     },

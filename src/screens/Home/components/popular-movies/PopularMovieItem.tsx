@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavigationScreenProp, withNavigation} from 'react-navigation';
-import {Image, View} from 'react-native';
+import {Image, TouchableOpacity, View} from 'react-native';
 import TouchableScale from 'react-native-touchable-scale';
 import Text from '~/components/common/Text';
 import {MovieType} from '~/types/Movie';
@@ -23,11 +23,7 @@ function PopularMovieItem({movie, navigation}: {
     return (
         <SharedElement id={`item.${id}.posterPath`}>
             <View style={styles.container}>
-                <TouchableScale
-                    activeScale={0.8}
-                    tension={0}
-                    friction={1}
-                    useNativeDriver
+                <TouchableOpacity activeOpacity={0.7}
                     onPress={() => navigation.navigate('detail', {'movie': movie})}
                     style={styles.imageWrapper}>
                     <Image
@@ -51,7 +47,7 @@ function PopularMovieItem({movie, navigation}: {
                         </Text>
                     </LinearGradient>
 
-                </TouchableScale>
+                </TouchableOpacity>
             </View>
         </SharedElement>
     );
