@@ -52,6 +52,7 @@ const PopularMovieList = () => {
     },
   ];
 
+
   return (loading
       ? <Loading/>
       : (
