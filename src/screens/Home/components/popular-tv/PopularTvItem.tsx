@@ -1,13 +1,11 @@
 import React from 'react';
 import {NavigationScreenProp, withNavigation} from 'react-navigation';
-import {Image, View, TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
+import {Image, View, TouchableOpacity} from 'react-native';
 import Text from '~/components/common/Text';
 import {MovieType} from '~/types/Movie';
 import LinearGradient from 'react-native-linear-gradient';
 import Colors from '~/theming/colors';
-
-
-const {width} = Dimensions.get('window');
+import styles from "~/screens/Home/components/popular-tv/style";
 
 function PopularTvItem({movie, navigation}: {
   movie: MovieType; navigation: NavigationScreenProp<any>;
@@ -44,34 +42,5 @@ function PopularTvItem({movie, navigation}: {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: (width / 3) + 5,
-    backgroundColor: Colors.white, height: 250, marginTop: 10,
-  },
-
-  imageWrapper: {
-    flex: 1,
-    overflow: 'hidden',
-    alignItems: 'center',
-    backgroundColor: 'orange',
-    position: 'relative',
-  },
-  image: {
-    flex: 1,
-    resizeMode:"stretch"
-  },
-  detailsWraper: {
-    position: 'absolute',
-    bottom: 0,
-    right: 0,
-    left: 0,
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-    backgroundColor: Colors.lightgray,
-  },
-});
 
 export default withNavigation(PopularTvItem);
