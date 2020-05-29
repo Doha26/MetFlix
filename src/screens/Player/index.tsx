@@ -7,9 +7,9 @@ import StatusBar from '~/components/common/StatusBar';
 import Orientation from 'react-native-orientation';
 import {MovieType} from "~/types/Movie";
 import Video from 'react-native-video';
-import styles from "~/screens/Player/styles";
 import Container from "~/components/common/Container";
-import {Colors} from "react-native/Libraries/NewAppScreen";
+import Colors from "~/theming/colors";
+import {SharedElement} from "react-native-shared-element";
 
 
 const Player = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
@@ -76,7 +76,6 @@ const Player = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
     };
 
     const resizeVideoPlayer = () => {
-        // Always in 16 /9 aspect ratio
         let {width, height} = Dimensions.get('window');
         if (deviceOrientation == 'portrait' || deviceOrientation == 'portraitupsidedown') {
             setOrientationHeight(350);
@@ -103,20 +102,22 @@ const Player = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
                     justifyContent: 'center',
                     alignItems: 'center',
                 }}>
-                    <Video
-                        style={{width: orientationWidth, height: orientationHeight}}
-                        ref={mPlayer}
-                        source={video}
-                        //resizeMode="stretch"
-                        progressUpdateInterval={250}
-                        controls={true}
-                        paused={paused}
-                        // seek={currentPosition}
-                        onLoad={handleLoad}
-                        onProgress={handleProgress}
-                        // onSeek={({currentTime: time}: { currentTime: number }) => setCurrentTime(time)}
-                        onEnd={handleEnd}
-                    />
+                    <SharedElement id={`item.${id}.video`}>
+                        <Video
+                            style={{width: orientationWidth, height: orientationHeight}}
+                            ref={mPlayer}
+                            source={video}
+                            //resizeMode="stretch"
+                            progressUpdateInterval={250}
+                            controls={true}
+                            paused={paused}
+                            // seek={currentPosition}
+                            onLoad={handleLoad}
+                            onProgress={handleProgress}
+                            // onSeek={({currentTime: time}: { currentTime: number }) => setCurrentTime(time)}
+                            onEnd={handleEnd}
+                        />
+                    </SharedElement>
                 </View>
             </Container>
         </SafeAreaProvider>
@@ -127,13 +128,10 @@ Player.sharedElements = (navigation: NavigationScreenProp<any>) => {
     const item = navigation.getParam('movie');
     return [
         {
-            id: `item.${item.id}.posterPath`,
+            id: `item.${item.id}.video`,
             animation: 'fade'
-        },
-        {
-            id: `item.${item.id}.title`,
-            animation: 'fade'
-        }];
+        }
+    ]
 };
 
 export default Player;
