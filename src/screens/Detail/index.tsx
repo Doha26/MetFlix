@@ -33,10 +33,14 @@ const Detail = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
                 </SharedElement>
                 <BlackOverlay/>
                 <HeaderBack onPress={() => navigation.goBack()} title={"Details"}/>
-                <TouchableOpacity style={styles.playerButton} activeOpacity={0.7}>
-                    <Icon type={'antdesign'} size={26} color={Colors.white}
-                          name={'caretright'}/>
+
+                <TouchableOpacity style={styles.playerButton} activeOpacity={0.7} onPress={() => navigation.navigate('player', {movie: movie})}>
+                    <SharedElement id={`item.${id}.video`} >
+                        <Icon type={'antdesign'} size={26} color={Colors.white}
+                              name={'caretright'}/>
+                    </SharedElement>
                 </TouchableOpacity>
+
                 <View
                     style={styles.detailsWraper}>
                     <SharedElement id={`item.${id}.title`}>
