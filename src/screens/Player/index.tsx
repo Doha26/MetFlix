@@ -28,7 +28,6 @@ const Player = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
 
     const mPlayer = useRef<Video>(null);
 
-
     // Get passed Movie
     //const movie = navigation.getParam('movie');
 
@@ -38,10 +37,10 @@ const Player = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
     //const movie: MovieType = navigation.getParam('movie');
     const movie: MovieType = {
         id: 'xdtpWEDSFRlkjg-oikjhgd',
-        title: 'Titre3',
-        posterPath: require('~/assets/images/poster.jpeg'),
-        releaseDate: '20-40-2009',
-        description: 'Just an amazing movie3',
+        original_title: 'Titre3',
+        poster_path: require('~/assets/images/poster.jpeg'),
+        release_date: '20-40-2009',
+        overview: 'Just an amazing movie3',
     };
 
     const {id} = movie;
