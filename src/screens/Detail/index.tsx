@@ -1,6 +1,6 @@
 import React, {Suspense} from 'react';
 import {SafeAreaProvider} from "react-native-safe-area-context";
-import {View, Image, ScrollView, TouchableOpacity, ActivityIndicator, Platform} from 'react-native';
+import {View, ScrollView, TouchableOpacity, ActivityIndicator, Platform} from 'react-native';
 import Container from '~/components/common/Container';
 import HeaderBack from '~/components/common/header-back';
 import {NavigationScreenProp} from 'react-navigation';
@@ -16,13 +16,14 @@ import {HEIGHT, WIDTH} from "~/utils/dimensions";
 
 const Detail = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
 
-
+    // Getting passed data from navigation
     const movie: MovieType = navigation.getParam('movie');
+
     const {id} = movie; // Destructuring the Movie Object to get the id poperty
     const poster_image: string = useRessource({path: movie.poster_path, size: 'w500'});
 
+    // Lazy loading the background image
     const LazyImage = React.lazy(() => import('~/components/LazyImage/index'));
-
 
     return (
         <SafeAreaProvider>
