@@ -15,6 +15,8 @@ const PopularMovieList = () => {
       ? <Loading/>
       : (
         <List
+            theme={null}
+            horizontal={true}
           data={data}
           title="Popular Movies"
           onViewAllPress={() => {}}

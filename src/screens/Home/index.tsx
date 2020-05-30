@@ -1,11 +1,9 @@
-import React, {useState} from 'react';
-import {SafeAreaProvider} from "react-native-safe-area-context";
+import React, {useEffect, useState} from 'react';
 import Container from '~/components/common/Container';
-import {ActivityIndicator, Platform, View} from 'react-native';
-import StatusBar from '~/components/common/StatusBar';
-import {SearchBar} from 'react-native-elements';
+import {ActivityIndicator, Platform, TouchableOpacity, View} from 'react-native';
+import {Icon, SearchBar} from 'react-native-elements';
 import {NavigationScreenProp} from 'react-navigation';
-import Poster from '~/screens/Home/components/Poster';
+import Poster from '~/screens/Home/components/poster/Poster';
 import PopularMovieList from '~/screens/Home/components/popular-movies/PopularMovieList';
 import PopularTvList from '~/screens/Home/components/popular-tv/PopularTvList';
 import FamilyList from '~/screens/Home/components/family/FamilyList';
@@ -14,28 +12,52 @@ import Text from '~/components/common/Text';
 import DocumentaryList from '~/screens/Home/components/documentary/DocumentaryList';
 import SearchResults from "~/screens/Home/components/search-results";
 import {useDispatch, useSelector} from "react-redux";
-import {cancelSearch, search} from '~/actions/search-action/index'
+import {cancelSearch, canPerformSearch, search} from '~/actions/search-action/index'
+import StatusBar from "~/components/common/StatusBar";
+import styles from "~/screens/Home/styles";
+import {useHeaderHeight} from "react-navigation-stack";
+
+const {searchStats,countResultTitle}= styles;
 
 const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
 
+    // Get the dispatcher
     const dispatch = useDispatch();
+
+    const headerHeight = useHeaderHeight(); // Get the Header height for custom styling
+
+    // State initialisation
     const [query, setQuery] = useState('');
     const [pendingSearch, setPendingSearch] = useState(false);
 
-    const {searching, has_results} = useSelector(({searchReducer}) => searchReducer);
+    // Geting value from reux store to handle conditional rendering
+    const {searching, has_results, search_results} = useSelector(({searchReducer}) => searchReducer);
 
+
+    useEffect(()=>{
+
+    },[]);
+
+    /* This method is triggered once user start typing on the search box */
     const performSearch = (value: string) => {
-        setPendingSearch(true);
-        if (value != '') {
+
+        if (value != '') {  // if the input value is not emppty
+
+           // notify the component to display loader by updating the state value
+            setPendingSearch(true);
             setQuery(value);
+
+            // dispatch some actions that will perform remote request
+            dispatch(canPerformSearch());
             dispatch(search(value))
         } else {
             setPendingSearch(false);
             setQuery('');
-            dispatch(cancelSearch())
+            dispatch(cancelSearch())  // notify the reducer wether searching should stop
         }
     };
 
+    /* this method allows to performs acton when it comes to cancel seaarching */
     const cancelQuery = () => {
         setPendingSearch(false);
         setQuery('');
@@ -53,35 +75,56 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
     );
 
     const resultContent = (
-        <SearchResults query={search} navigation={navigation}/>
+        <SearchResults navigation={navigation}/>
     );
 
     const noResultContent = (
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-            <Text small style={{fontWeight: 'bold', color: Colors.white,marginVertical:30}}>No result found</Text>
+            <Text small style={{fontWeight: 'bold',
+                color: Colors.white, marginVertical: 30}}>No result found</Text>
         </View>
     );
 
     return (
-        <SafeAreaProvider>
-            <StatusBar/>
-            <Container>
+        <>
+            <View style={{
+                paddingHorizontal: 10,
+                paddingBottom: 20,
+                paddingVertical: 10,
+                backgroundColor: Colors.black,
+                paddingTop: headerHeight,
+                justifyContent: 'flex-end'
+            }}>
+                <StatusBar/>
                 <SearchBar
-                    showLoading={searching}
                     onClear={cancelQuery}
                     onBlur={cancelQuery}
-                    inputContainerStyle={{height: 37}}
-                    containerStyle={{borderRadius: 10, marginTop: 20, borderWidth: 1, marginHorizontal: 10}}
+                    style={{alignSelf: 'stretch'}}
+                    inputContainerStyle={{height: 37,}}
+                    containerStyle={{borderRadius: 10, marginHorizontal: 10,}}
                     placeholder="Discover"
                     onChangeText={(value: string) => performSearch(value)}
                     value={query}
                 />
+                {pendingSearch ? (
+                    <View style={searchStats}>
+                        <Text numberOfLines={2} small style={countResultTitle}>
+                            {search_results?.length} items found
+                        </Text>
+                        <TouchableOpacity activeOpacity={0.7} onPress={cancelQuery}>
+                            <Icon type={'antdesign'} size={26} color={Colors.lightGrey}
+                                  name={'close'}/>
+                        </TouchableOpacity>
+                    </View>
+                ) : null}
+            </View>
+            <Container>
                 {searching ? (
                     has_results ? resultContent :
                         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                             <ActivityIndicator
                                 color={Colors.white}
-                                style={{marginVertical:30}}
+                                style={{marginVertical: 30}}
                                 size={Platform.OS === 'ios' ? 1 : 24}
                             /></View>
                 ) : (
@@ -89,9 +132,9 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
                         has_results ? resultContent : noResultContent
                         : null
                 )}
-                {!pendingSearch ? homeContent : null}
+                {!pendingSearch ? homeContent : resultContent}
             </Container>
-        </SafeAreaProvider>
+        </>
     );
 };
 

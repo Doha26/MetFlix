@@ -15,6 +15,8 @@ const PopularTvList = () => {
             ? <Loading/>
             : (
                 <List
+                    theme={null}
+                    horizontal={true}
                     data={data}
                     title="Popular tv series"
                     onViewAllPress={() => {

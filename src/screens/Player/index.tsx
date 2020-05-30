@@ -36,6 +36,7 @@ const Player = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
 
     const {id} = movie;
 
+    // Listen to layout effect to perfomr some actions. (Use full for actions concerning screen orientation)
     useLayoutEffect(() => {
         Orientation.getOrientation((err: any, orientation: Orientation.orientation) => {
             setDeviceOrientation(orientation.toLowerCase());
