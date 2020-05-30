@@ -12,8 +12,8 @@ const DocumentaryList = () => {
     const documentary_genres_movies: any = [], documentary_flag = 'documentary';
 
     //const loading = false;
-    const {response,loading} = useFetch({path:THEMOVIEDB_QUERY_TYPE.POPULAR_MOVIES});
-    const { results: data } = response || {};
+    const {response, loading} = useFetch({path: THEMOVIEDB_QUERY_TYPE.POPULAR_MOVIES});
+    const {results: data} = response || {};
 
     // In order to search genres family , first get the list of genres
     const genres_response: QueryResponse = useFetch({path: THEMOVIEDB_QUERY_TYPE.GENRES});
@@ -29,19 +29,21 @@ const DocumentaryList = () => {
         }
     });
 
-  return (loading
-      ? <Loading/>
-      : (
-        <List
-          data={documentary_genres_movies}
-          title="Documentary"
-          onViewAllPress={() => console.log(1)}
-          keyExtractor={({id}: {id: string}) => String(id)}
-          subtitle="Documentary you will like"
-          renderItem={({item}: {item: MovieType}) => <DocumentaryItem movie={item}/>}
-        />
-      )
-  );
+    return (loading
+            ? <Loading/>
+            : (
+                <List
+                    theme={null}
+                    horizontal={true}
+                    data={documentary_genres_movies}
+                    title="Documentary"
+                    onViewAllPress={() => console.log(1)}
+                    keyExtractor={({id}: { id: string }) => String(id)}
+                    subtitle="Documentary you will like"
+                    renderItem={({item}: { item: MovieType }) => <DocumentaryItem movie={item}/>}
+                />
+            )
+    );
 };
 
 export default DocumentaryList;
