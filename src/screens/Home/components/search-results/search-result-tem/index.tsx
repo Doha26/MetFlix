@@ -17,7 +17,7 @@ const  SearchResultItem = ({movie, navigation}: {
 })=> {
 
     // Destructuring properties
-    const {poster_path, original_title, overview} = movie;
+    const {poster_path, original_title, overview,vote_count} = movie;
 
     //Get the poster_image of the current item
     const poster_image: string = useRessource({path: poster_path, size: 'w342'});
@@ -67,7 +67,7 @@ const  SearchResultItem = ({movie, navigation}: {
                             extraLarge
                             numberOfLines={1}
                             style={Object.assign({}, titleStyle, {marginLeft: 10})}>
-                            180
+                            {vote_count}
                         </Text>
                     </View>
                     <Icon type={'entypo'} size={26} color={Colors.black}

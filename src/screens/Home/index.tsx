@@ -98,7 +98,6 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
                 <StatusBar/>
                 <SearchBar
                     onClear={cancelQuery}
-                    onBlur={cancelQuery}
                     style={{alignSelf: 'stretch'}}
                     inputContainerStyle={{height: 37,}}
                     containerStyle={{borderRadius: 10, marginHorizontal: 10,}}

@@ -4,9 +4,7 @@ import React from "react";
 import {useSelector} from "react-redux";
 import SearchResultItem from "~/screens/Home/components/search-results/search-result-tem";
 import {MovieType} from "~/types/Movie";
-import Text from "~/components/common/Text";
 import Colors from "~/theming/colors";
-import {Icon} from "react-native-elements";
 
 const SearchResults = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
 
