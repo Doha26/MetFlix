@@ -8,15 +8,13 @@ import Orientation from 'react-native-orientation';
 import {MovieType} from "~/types/Movie";
 import Video from 'react-native-video';
 import Container from "~/components/common/Container";
-import Colors from "~/theming/colors";
 import {SharedElement} from "react-native-shared-element";
 
 
 const Player = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
 
     // Initial states
-    const [currentTime, setCurrentTime] = useState(0);
-    const [currentPosition, setCurrentPosition] = useState(0);
+    const [currentTime,setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [paused, setPaused] = useState(false);
     const [hidePlayButton, setHidePlayButton] = useState(false);

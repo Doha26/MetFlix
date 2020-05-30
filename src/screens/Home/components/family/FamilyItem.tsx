@@ -1,6 +1,6 @@
 import React, {Suspense} from 'react';
 import {NavigationScreenProp, withNavigation} from 'react-navigation';
-import {Image, View, TouchableOpacity, StyleSheet, Dimensions, ActivityIndicator, Platform} from 'react-native';
+import {View, TouchableOpacity, StyleSheet, ActivityIndicator, Platform} from 'react-native';
 import Text from '~/components/common/Text';
 import {MovieType} from '~/types/Movie';
 import LinearGradient from 'react-native-linear-gradient';
