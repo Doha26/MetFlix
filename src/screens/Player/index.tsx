@@ -29,19 +29,10 @@ const Player = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
     const mPlayer = useRef<Video>(null);
 
     // Get passed Movie
-    //const movie = navigation.getParam('movie');
+    const movie: MovieType = navigation.getParam('movie');
 
     // Get local video file from asset
     const video = require('~/assets/videos/big_buck_bunny.mp4');
-
-    //const movie: MovieType = navigation.getParam('movie');
-    const movie: MovieType = {
-        id: 'xdtpWEDSFRlkjg-oikjhgd',
-        original_title: 'Titre3',
-        poster_path: require('~/assets/images/poster.jpeg'),
-        release_date: '20-40-2009',
-        overview: 'Just an amazing movie3',
-    };
 
     const {id} = movie;
 
@@ -94,7 +85,7 @@ const Player = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
                 <HeaderBack
                     landScapeMode={landscapeMode}
                     onPress={() => navigation.goBack()}
-                    title={"Details"} subtitle={"Episode title"}/>
+                    title={"Details"} subtitle={movie.title ? movie.title : movie.name}/>
                 <View style={{
                     flex: 1,
                     marginTop: landscapeMode ? 0 : 55,

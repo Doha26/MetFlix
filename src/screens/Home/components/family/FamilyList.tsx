@@ -5,17 +5,18 @@ import {MovieType} from '~/types/Movie';
 import FamilyItem from '~/screens/Home/components/family/FamilyItem';
 import useFetch from "~/hooks/use-fetch";
 import {QueryResponse} from "~/types/QueryResponse";
+import {THEMOVIEDB_QUERY_TYPE} from "~/constants";
 
 const FamilyList = () => {
 
     const family_genres_movies: any = [], family_flag = 'family';
 
     //const loading = false;
-    const {response,loading} = useFetch({path: 'movie/popular'});
+    const {response,loading} = useFetch({path: THEMOVIEDB_QUERY_TYPE.POPULAR_MOVIES});
     const { results: data } = response || {};
 
     // In order to search genres family , first get the list of genres
-    const genres_response: QueryResponse = useFetch({path: 'genre/movie/list'});
+    const genres_response: QueryResponse = useFetch({path: THEMOVIEDB_QUERY_TYPE.GENRES});
     const genres = genres_response?.response?.genres;
 
     // Once having the list genres , filter the result to obtain the family genre object
