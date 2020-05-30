@@ -2,7 +2,7 @@ import theme from '~/theming/theme';
 
 import {
   UI_CHANGE_THEME,
-} from '~/actions/ui-actions/types';
+} from '~/actions/ui-action/types';
 
 const INITIAL_STATE = {
   theme: theme.dark,

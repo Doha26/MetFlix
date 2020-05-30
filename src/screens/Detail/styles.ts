@@ -1,19 +1,13 @@
-import {Dimensions, StyleSheet} from "react-native";
+import {StyleSheet} from "react-native";
 import Colors from "~/theming/colors";
-
-const {width,height}= Dimensions.get("window");
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        width: width,
-        height: height,
     },
 
     imageWrapper: {
         flex: 1,
-        width: width,
-        height: height,
         overflow: 'hidden',
         alignItems: 'center',
         backgroundColor: 'orange',

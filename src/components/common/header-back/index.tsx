@@ -20,7 +20,7 @@ const defaultProps = {
 };
 
 const HeaderBack = ({onPress, title, subtitle, landScapeMode}: { onPress: () => void, title: string, subtitle?: string; landScapeMode?: boolean }) => (
-    <View style={[styles.container, {marginLeft: landScapeMode ? 40 : 16}]}>
+    <View style={[styles.container, {marginLeft: landScapeMode ? 40 : 16, marginTop: landScapeMode ? 4 : 20,}]}>
         <TouchableOpacity onPress={onPress}>
             <Icon
                 large
@@ -32,7 +32,7 @@ const HeaderBack = ({onPress, title, subtitle, landScapeMode}: { onPress: () => 
                 <Text style={styles.titleStyle}>{title}</Text>
                 <Text style={styles.subtitleStyle}>{subtitle}</Text>
             </View>
-            : <Text style={Object.assign({},styles.titleStyle,{marginLeft: 40})}>{title}</Text>
+            : <Text style={Object.assign({}, styles.titleStyle, {marginLeft: 40})}>{title}</Text>
         }
     </View>
 );
@@ -40,7 +40,6 @@ const HeaderBack = ({onPress, title, subtitle, landScapeMode}: { onPress: () => 
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        marginTop: 4,
         alignItems: 'center',
         zIndex: 1100,
         position: 'absolute'
