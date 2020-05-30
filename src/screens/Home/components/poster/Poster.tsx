@@ -1,11 +1,10 @@
 import React from 'react';
 import {NavigationScreenProp, withNavigation} from 'react-navigation';
-import {MovieType} from '~/types/Movie';
 import {TouchableOpacity, View, Image} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Colors from '~/theming/colors';
 import Text from '~/components/common/Text';
-import styles from "~/screens/Home/components/styles";
+import styles from "~/screens/Home/components/poster/styles";
 import useFetch from "~/hooks/use-fetch";
 import {useRessource} from "~/hooks/use-ressource";
 import {WIDTH} from "~/utils/dimensions";
@@ -13,7 +12,8 @@ import {WIDTH} from "~/utils/dimensions";
 
 function Poster({navigation: {navigate}}: { navigation: NavigationScreenProp<any> }) {
 
-    const {response, loading} = useFetch({path: 'movie/top_rated'});
+    const {response} = useFetch({path: 'movie/top_rated'});
+
     const {results: data} = response || {};
 
     // Get a random integer between O and 20;
