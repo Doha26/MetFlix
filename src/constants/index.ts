@@ -5,5 +5,6 @@ export const THEMOVIEDB_API_KEY = '192c2124b65d6628eb786c122bf79e63';
 export const THEMOVIEDB_QUERY_TYPE = {
     POPULAR_MOVIES: "movie/popular",
     POPULAR_TV: "tv/popular",
-    GENRES: "genre/movie/list"
+    GENRES: "genre/movie/list",
+    SEARCH: "search/movie"
 };
