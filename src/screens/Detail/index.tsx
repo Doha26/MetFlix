@@ -13,14 +13,12 @@ import {MovieType} from "~/types/Movie";
 import styles from "~/screens/Detail/styles";
 import {useRessource} from "~/hooks/use-ressource";
 import {HEIGHT, WIDTH} from "~/utils/dimensions";
-import Orientation from "react-native-orientation";
+import moment from "moment";
 
 const Detail = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
 
     // States initialisation
     const [deviceOrientation, setDeviceOrientation] = useState('');
-    const [orientationWidth, setOrientationWidth] = useState(0);
-    const [orientationHeight, setOrientationHeight] = useState(0);
 
     // Getting passed data from navigation
     const movie: MovieType = navigation.getParam('movie');
@@ -30,29 +28,6 @@ const Detail = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
 
     // Lazy loading the background image
     const LazyImage = React.lazy(() => import('~/components/LazyImage/index'));
-
-    // Listen to layout effect to perfomr some actions. (Use full for actions concerning screen orientation)
-    useLayoutEffect(() => {
-        Orientation.getOrientation((err: any, orientation: Orientation.orientation) => {
-            setDeviceOrientation(orientation.toLowerCase());
-            updateScreenDimensions();
-        });
-        Orientation.addOrientationListener((orientation) => {
-            setDeviceOrientation(orientation);
-            updateScreenDimensions();
-        });
-    });
-
-    const updateScreenDimensions = () => {
-        let {width, height} = Dimensions.get('window');
-        if (deviceOrientation == 'portrait' || deviceOrientation == 'portraitupsidedown') {
-            setOrientationHeight(350);
-            setOrientationWidth(width);
-        } else {
-            setOrientationHeight(height);
-            setOrientationWidth(width);
-        }
-    };
 
 
     return (
@@ -99,7 +74,7 @@ const Detail = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
                         extraLarge
                         numberOfLines={1}
                         style={styles.subTitleStyle}>
-                        {`Released on ${movie.release_date ? movie.release_date : movie.first_air_date}`}
+                        {`Released date : ${movie.release_date ? moment(movie.release_date).format("MMMM DD, YYYY") :  moment(movie.first_air_date).format("MMMM DD, YYYY")}`}
                     </Text>
                     <ScrollView showsHorizontalScrollIndicator={false}
                                 showsVerticalScrollIndicator={false}>
