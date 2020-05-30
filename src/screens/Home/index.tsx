@@ -6,7 +6,6 @@ import StatusBar from '~/components/common/StatusBar';
 import {SearchBar} from 'react-native-elements';
 import {NavigationScreenProp} from 'react-navigation';
 import Poster from '~/screens/Home/components/Poster';
-import {MovieType} from '~/types/Movie';
 import PopularMovieList from '~/screens/Home/components/popular-movies/PopularMovieList';
 import PopularTvList from '~/screens/Home/components/popular-tv/PopularTvList';
 import FamilyList from '~/screens/Home/components/family/FamilyList';
