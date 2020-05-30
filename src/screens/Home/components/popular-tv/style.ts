@@ -31,6 +31,16 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         backgroundColor: Colors.lightgray,
     },
+    titleStyle: {
+        fontSize: 22,
+        marginTop: 3,
+        fontWeight: '500',
+        color: Colors.white
+    },
+    subtitleStyle: {
+        color: Colors.white,
+        fontWeight: '400'
+    }
 });
 
 export default styles;

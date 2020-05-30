@@ -32,7 +32,7 @@ const HeaderBack = ({onPress, title, subtitle, landScapeMode}: { onPress: () => 
                 <Text style={styles.titleStyle}>{title}</Text>
                 <Text style={styles.subtitleStyle}>{subtitle}</Text>
             </View>
-            : <Text style={[styles.titleStyle, {marginLeft: 40}]}>{title}</Text>
+            : <Text style={Object.assign({},styles.titleStyle,{marginLeft: 40})}>{title}</Text>
         }
     </View>
 );
