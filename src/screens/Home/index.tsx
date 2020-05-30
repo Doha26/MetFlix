@@ -10,7 +10,7 @@ import {MovieType} from '~/types/Movie';
 import PopularMovieList from '~/screens/Home/components/popular-movies/PopularMovieList';
 import PopularTvList from '~/screens/Home/components/popular-tv/PopularTvList';
 import FamilyList from '~/screens/Home/components/family/FamilyList';
-import DocumentaryList from '~/screens/Home/components/Documentary/DocumentaryList';
+import DocumentaryList from '~/screens/Home/components/documentary/DocumentaryList';
 
 
 const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
@@ -19,15 +19,6 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
     const updateSearch = (search: string) => {
         setSearch(search);
     };
-
-    const sampleMovie: MovieType = {
-        id: 'xdtplkjg-oikjhgd',
-        original_title: 'Titre',
-        poster_path: require('~/assets/images/poster.jpeg'),
-        release_date: '20-40-2009',
-        overview: 'Just an amazing movie',
-    };
-
     return (
         <SafeAreaProvider>
             <Container>
@@ -39,7 +30,7 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
                         placeholder="Discover"
                         onChangeText={updateSearch}
                         value={search}/>
-                    <Poster movie={sampleMovie}/>
+                    <Poster/>
                     <PopularMovieList/>
                     <PopularTvList/>
                     <FamilyList/>

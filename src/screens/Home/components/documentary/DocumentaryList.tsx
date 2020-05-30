@@ -2,20 +2,21 @@ import React from 'react';
 import List from '~/components/common/list/List';
 import Loading from '~/components/common/Loading';
 import {MovieType} from '~/types/Movie';
-import DocumentaryItem from '~/screens/Home/components/Documentary/DocumentaryItem';
+import DocumentaryItem from '~/screens/Home/components/documentary/DocumentaryItem';
 import useFetch from "~/hooks/use-fetch";
 import {QueryResponse} from "~/types/QueryResponse";
+import {THEMOVIEDB_QUERY_TYPE} from "~/constants";
 
 const DocumentaryList = () => {
 
     const documentary_genres_movies: any = [], documentary_flag = 'documentary';
 
     //const loading = false;
-    const {response,loading} = useFetch({path: 'movie/popular'});
+    const {response,loading} = useFetch({path:THEMOVIEDB_QUERY_TYPE.POPULAR_MOVIES});
     const { results: data } = response || {};
 
     // In order to search genres family , first get the list of genres
-    const genres_response: QueryResponse = useFetch({path: 'genre/movie/list'});
+    const genres_response: QueryResponse = useFetch({path: THEMOVIEDB_QUERY_TYPE.GENRES});
     const genres = genres_response?.response?.genres;
 
     // Once having the list genres , filter the result to obtain the family genre object

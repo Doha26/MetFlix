@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
         flex: 1,
         marginHorizontal: 10,
         height: 250,
-        marginTop: 110,
+        marginTop: 50,
     },
     imageWrapper: {
         flex: 1,
