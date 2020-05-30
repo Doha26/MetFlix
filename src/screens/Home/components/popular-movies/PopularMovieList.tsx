@@ -4,10 +4,11 @@ import Loading from '~/components/common/Loading';
 import PopularMovieItem from './PopularMovieItem';
 import {MovieType} from '~/types/Movie';
 import useFetch from "~/hooks/use-fetch";
+import {THEMOVIEDB_QUERY_TYPE} from "~/constants";
 
 const PopularMovieList = () => {
 
-  const { response, loading } = useFetch({ path: 'movie/popular' });
+  const { response, loading } = useFetch({ path: THEMOVIEDB_QUERY_TYPE.POPULAR_MOVIES });
   const { results: data } = response || {};
 
   return (loading

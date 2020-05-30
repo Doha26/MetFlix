@@ -11,7 +11,7 @@ import {useRessource} from "~/hooks/use-ressource";
 import {WIDTH} from "~/utils/dimensions";
 
 
-function Poster({movie, navigation: {navigate}}: { movie: MovieType; navigation: NavigationScreenProp<any> }) {
+function Poster({navigation: {navigate}}: { navigation: NavigationScreenProp<any> }) {
 
     const {response, loading} = useFetch({path: 'movie/top_rated'});
     const {results: data} = response || {};
@@ -34,7 +34,9 @@ function Poster({movie, navigation: {navigate}}: { movie: MovieType; navigation:
         const poster_image: string = useRessource({path: poster_path, size: 'w342'});
 
         rendered = (
-            <TouchableOpacity onPress={() => console.log(1)} style={styles.imageWrapper}>
+            <TouchableOpacity
+                onPress={() => navigate('detail', {'movie': top_rated_movie})}
+                style={styles.imageWrapper}>
                 <Image
                     style={styles.image}
                     source={{
@@ -82,7 +84,6 @@ function Poster({movie, navigation: {navigate}}: { movie: MovieType; navigation:
             </TouchableOpacity>
         )
     }
-
 
     // @ts-ignore
     return (
