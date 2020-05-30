@@ -1,6 +1,6 @@
 import React, {Suspense} from 'react';
 import {NavigationScreenProp, withNavigation} from 'react-navigation';
-import {ActivityIndicator, Dimensions, Image, Platform, TouchableOpacity, View} from 'react-native';
+import {ActivityIndicator, Platform, TouchableOpacity, View} from 'react-native';
 import Text from '~/components/common/Text';
 import {MovieType} from '~/types/Movie';
 import LinearGradient from 'react-native-linear-gradient';
@@ -8,7 +8,7 @@ import Colors from '~/theming/colors';
 import {SharedElement} from 'react-navigation-shared-element';
 import styles from "~/screens/Home/components/popular-movies/styles";
 import {useRessource} from "~/hooks/use-ressource";
-import {HEIGHT, WIDTH} from "~/utils/dimensions";
+import {WIDTH} from "~/utils/dimensions";
 
 function PopularMovieItem({movie, navigation}: {
     movie: MovieType; navigation: NavigationScreenProp<any>;

@@ -1,6 +1,6 @@
-import React, {Suspense, useLayoutEffect, useState} from 'react';
+import React, {Suspense} from 'react';
 import {SafeAreaProvider} from "react-native-safe-area-context";
-import {View, ScrollView, TouchableOpacity, ActivityIndicator, Platform, Dimensions} from 'react-native';
+import {View, ScrollView, TouchableOpacity, ActivityIndicator, Platform} from 'react-native';
 import Container from '~/components/common/Container';
 import HeaderBack from '~/components/common/header-back';
 import {NavigationScreenProp} from 'react-navigation';
@@ -16,9 +16,6 @@ import {HEIGHT, WIDTH} from "~/utils/dimensions";
 import moment from "moment";
 
 const Detail = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
-
-    // States initialisation
-    const [deviceOrientation, setDeviceOrientation] = useState('');
 
     // Getting passed data from navigation
     const movie: MovieType = navigation.getParam('movie');
