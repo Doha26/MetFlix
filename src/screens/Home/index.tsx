@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import Container from '~/components/common/Container';
 import {ActivityIndicator, Platform, TouchableOpacity, View} from 'react-native';
 import {Icon, SearchBar} from 'react-native-elements';
@@ -12,7 +12,7 @@ import Text from '~/components/common/Text';
 import DocumentaryList from '~/screens/Home/components/documentary/DocumentaryList';
 import SearchResults from "~/screens/Home/components/search-results";
 import {useDispatch, useSelector} from "react-redux";
-import {cancelSearch, search} from '~/actions/search-action/index'
+import {cancelSearch, search} from '~/actions/search-actions/index'
 import StatusBar from "~/components/common/StatusBar";
 import styles from "~/screens/Home/styles";
 import {useHeaderHeight} from "react-navigation-stack";
@@ -24,7 +24,8 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
     // Get the dispatcher
     const dispatch = useDispatch();
 
-    const headerHeight = useHeaderHeight(); // Get the Header height for custom styling
+    // Get the Header height for custom styling
+    const headerHeight = useHeaderHeight();
 
     // State initialisation
     const [query, setQuery] = useState('');
@@ -32,11 +33,6 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
 
     // Geting value from reux store to handle conditional rendering
     const {searching, has_results, search_results} = useSelector(({searchReducer}) => searchReducer);
-
-
-    useEffect(() => {
-
-    }, []);
 
     /* This method is triggered once user start typing on the search box */
     const performSearch = (value: string) => {
@@ -58,11 +54,17 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
     };
 
     /* this method allows to performs acton when it comes to cancel seaarching */
-    const cancelQuery = () => {
-        if (query == '') {
+    const cancelQuery = (abort: boolean) => {
+        if (abort) {
             setPendingSearch(false);
             setQuery('');
             dispatch(cancelSearch())
+        } else {
+            if (query == '') {
+                setPendingSearch(false);
+                setQuery('');
+                dispatch(cancelSearch())
+            }
         }
     };
 
@@ -93,15 +95,14 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
         <>
             <View style={{
                 paddingHorizontal: 10,
-                paddingBottom: 20,
                 paddingVertical: 10,
                 backgroundColor: Colors.black,
-                paddingTop: Platform.select({ios:headerHeight,android:50}),
+                paddingTop: Platform.select({ios: headerHeight-20, android: 50}),
                 justifyContent: 'flex-end'
             }}>
                 <StatusBar/>
                 <SearchBar
-                    onClear={cancelQuery}
+                    onClear={() => cancelQuery(true)}
                     style={{alignSelf: 'stretch'}}
                     inputContainerStyle={{height: 37,}}
                     containerStyle={{borderRadius: 10, marginHorizontal: 10,}}
@@ -114,10 +115,6 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
                         <Text numberOfLines={2} small style={countResultTitle}>
                             {search_results?.length} items found
                         </Text>
-                        <TouchableOpacity activeOpacity={0.7} onPress={cancelQuery}>
-                            <Icon type={'antdesign'} size={26} color={Colors.lightGrey}
-                                  name={'close'}/>
-                        </TouchableOpacity>
                     </View>
                 ) : null}
             </View>

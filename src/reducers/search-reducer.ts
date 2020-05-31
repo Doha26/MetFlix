@@ -2,7 +2,7 @@ import {
     CAN_PERFORM_SEARCH,
     CANCEL_SEARCH, SEARCH_CANCELED,
     SEARCH_ERROR, SEARCH_PENDING, SEARCH_SUCCESS, SET_QUERY,
-} from '~/actions/search-action/types';
+} from '~/actions/search-actions/types';
 import {SearchreducerType} from "~/types/SearchreducerType";
 
 const INITIAL_STATE: SearchreducerType = {

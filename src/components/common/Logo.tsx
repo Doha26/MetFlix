@@ -12,7 +12,7 @@ const Logo = () => (
 const styles = StyleSheet.create({
   logo:{
     fontWeight:'bold',
-    fontSize:80,
+    fontSize:75,
     color: Colors.red
   }
 });

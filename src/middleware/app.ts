@@ -1,5 +1,5 @@
-import { SEARCH_PENDING, CANCEL_SEARCH } from "~/actions/search-action/types";
-import { mApiRequest, mCancelApiRequest } from "~/actions/api-action/index";
+import { SEARCH_PENDING, CANCEL_SEARCH } from "~/actions/search-actions/types";
+import { mApiRequest, mCancelApiRequest } from "~/actions/api-actions/index";
 import {API_BASE_URL, THEMOVIEDB_QUERY_TYPE} from "~/constants";
 
  const appMiddleware = () => (next:any) => (action:any) => {

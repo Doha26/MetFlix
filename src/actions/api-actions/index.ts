@@ -1,0 +1,26 @@
+// action creators
+import {M_API_REQUEST, M_CANCEL_API_REQUEST} from "~/actions/api-actions/types";
+import {SEARCH_ERROR, SEARCH_SUCCESS} from "~/actions/search-actions/types";
+
+export const mApiRequest = ({url}: { url: string }) => {
+    return {
+        type: M_API_REQUEST,
+        meta: {url}
+    };
+};
+
+export const mCancelApiRequest = () => {
+    return {
+        type: M_CANCEL_API_REQUEST,
+    };
+};
+
+export const mApiSuccess = ({response}: { response: any }) => ({
+    type: SEARCH_SUCCESS,
+    payload: response
+});
+
+export const mApiError = ({error}: { error: any }) => ({
+    type: SEARCH_ERROR,
+    payload: error
+});

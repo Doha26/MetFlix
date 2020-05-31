@@ -9,9 +9,10 @@ const styles = StyleSheet.create({
         color: Colors.lightGrey
     },
     searchStats:{
-        justifyContent: 'space-between',
+        justifyContent: 'flex-end',
         flexDirection: 'row',
-        paddingVertical: 10, marginTop: 20,
+        paddingVertical: 10,
+        marginTop: 5,
         marginHorizontal: 10
     }
 });

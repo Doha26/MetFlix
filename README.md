@@ -1,7 +1,29 @@
-# MetFlix
-* For this demo , i have been asked to build a fully functionnal movies react-native application. I dicided to call it MetFlix
+<p align="center">
+<img width="90" height="90" src="https://i.ibb.co/QQ3mbpq/logo.jpg">
+</p>
 
-* This App is built on top of React Native with React.JS (Used React Hooks) , Typescript. 
+
+# MetFlix 
+
+>For this demo , i have been asked to build a fully functionnal movies react-native application. I dicided to call it MetFlix
+ This App is built on top of React Native with React.JS (Used React Hooks) , Typescript. 
+ 
+ ## Results
+- [x] Splashscreen
+- [x] Home screen Movies List
+- [x] Search feature
+- [x] Movie Details
+- [x] Movie Player
+- [x] Documentation
+- [x] Working on iPhone and Android Devices (Tested)
+- [x] Responsive (Iphones and Tablets)
+- [x] Responsive
+- [ ] Test on Apple Tv OR Android TV ( IN PROGRESS )
+- [ ] Unit Tests ( IN PROGRESS )
+
+ ## Improvements (IN PROGRESS)
+- [ ] Writing fully configurable and advanced video player with 
+
 
 ### Dependencies
 
@@ -28,3 +50,12 @@
  
  ```
  
+ ### Author
+ 
+ *	[Pavel Foujeu](mailto:foujeupavel@gmail.com)
+ 
+ ### Done with React-native
+ 
+ *	[Instagram Clone ](https://github.com/Doha26/Instagram-clone)
+ *	[Facebook challenge ](https://github.com/Doha26/Facebook-React-native)
+
