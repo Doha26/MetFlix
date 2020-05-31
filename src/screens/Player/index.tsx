@@ -1,6 +1,6 @@
 import React, {useEffect, useLayoutEffect, useRef, useState} from 'react';
 import {SafeAreaProvider} from "react-native-safe-area-context";
-import {Dimensions, View} from 'react-native';
+import {Dimensions, Platform, View} from 'react-native';
 import HeaderBack from '~/components/common/header-back';
 import {NavigationScreenProp} from 'react-navigation';
 import StatusBar from '~/components/common/StatusBar';
@@ -9,12 +9,13 @@ import {MovieType} from "~/types/Movie";
 import Video from 'react-native-video';
 import Container from "~/components/common/Container";
 import {SharedElement} from "react-native-shared-element";
+import {HEIGHT, WIDTH} from "~/utils/dimensions";
 
 
 const Player = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
 
     // Initial states
-    const [currentTime,setCurrentTime] = useState(0);
+    const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [paused, setPaused] = useState(false);
     const [hidePlayButton, setHidePlayButton] = useState(false);
@@ -28,11 +29,11 @@ const Player = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
 
     // Get passed Movie
     const movie: MovieType = navigation.getParam('movie');
+    const {id, title, name} = movie;
 
     // Get local video file from asset
     const video = require('~/assets/videos/big_buck_bunny.mp4');
 
-    const {id} = movie;
 
     // Listen to layout effect to perfomr some actions. (Use full for actions concerning screen orientation)
     useLayoutEffect(() => {
@@ -84,7 +85,7 @@ const Player = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
                 <HeaderBack
                     landScapeMode={landscapeMode}
                     onPress={() => navigation.goBack()}
-                    title={"Details"} subtitle={movie.title ? movie.title : movie.name}/>
+                    title={"Details"} subtitle={title ? title : name}/>
                 <View style={{
                     flex: 1,
                     marginTop: landscapeMode ? 0 : 55,
@@ -93,9 +94,13 @@ const Player = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
                 }}>
                     <SharedElement id={`item.${id}.video`}>
                         <Video
-                            style={{width: orientationWidth, height: orientationHeight}}
+                            style={{
+                                width: Platform.select({ios: orientationWidth, android: WIDTH}),
+                                height: Platform.select({ios: orientationHeight, android: HEIGHT})
+                            }}
                             ref={mPlayer}
                             source={video}
+                            resizeMode={Platform.OS.toLowerCase() === 'android' ? 'contain' : 'contain'}
                             progressUpdateInterval={250}
                             controls={true}
                             paused={paused}

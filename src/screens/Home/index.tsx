@@ -12,12 +12,12 @@ import Text from '~/components/common/Text';
 import DocumentaryList from '~/screens/Home/components/documentary/DocumentaryList';
 import SearchResults from "~/screens/Home/components/search-results";
 import {useDispatch, useSelector} from "react-redux";
-import {cancelSearch, canPerformSearch, search} from '~/actions/search-action/index'
+import {cancelSearch, search} from '~/actions/search-action/index'
 import StatusBar from "~/components/common/StatusBar";
 import styles from "~/screens/Home/styles";
 import {useHeaderHeight} from "react-navigation-stack";
 
-const {searchStats,countResultTitle}= styles;
+const {searchStats, countResultTitle} = styles;
 
 const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
 
@@ -34,22 +34,22 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
     const {searching, has_results, search_results} = useSelector(({searchReducer}) => searchReducer);
 
 
-    useEffect(()=>{
+    useEffect(() => {
 
-    },[]);
+    }, []);
 
     /* This method is triggered once user start typing on the search box */
     const performSearch = (value: string) => {
 
-        if (value != '') {  // if the input value is not emppty
+        if (value != '') {  // if the input value is not empty
 
-           // notify the component to display loader by updating the state value
+            // notify the component to display loader by updating the state value
             setPendingSearch(true);
             setQuery(value);
 
-            // dispatch some actions that will perform remote request
-            dispatch(canPerformSearch());
+            // dispatch action that will perform remote request
             dispatch(search(value))
+
         } else {
             setPendingSearch(false);
             setQuery('');
@@ -59,9 +59,11 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
 
     /* this method allows to performs acton when it comes to cancel seaarching */
     const cancelQuery = () => {
-        setPendingSearch(false);
-        setQuery('');
-        dispatch(cancelSearch())
+        if (query == '') {
+            setPendingSearch(false);
+            setQuery('');
+            dispatch(cancelSearch())
+        }
     };
 
     const homeContent = (
@@ -80,8 +82,10 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
 
     const noResultContent = (
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-            <Text small style={{fontWeight: 'bold',
-                color: Colors.white, marginVertical: 30}}>No result found</Text>
+            <Text small style={{
+                fontWeight: 'bold',
+                color: Colors.white, marginVertical: 30
+            }}>No result found</Text>
         </View>
     );
 
@@ -92,7 +96,7 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
                 paddingBottom: 20,
                 paddingVertical: 10,
                 backgroundColor: Colors.black,
-                paddingTop: headerHeight,
+                paddingTop: Platform.select({ios:headerHeight,android:50}),
                 justifyContent: 'flex-end'
             }}>
                 <StatusBar/>

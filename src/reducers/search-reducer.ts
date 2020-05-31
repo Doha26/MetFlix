@@ -41,10 +41,6 @@ export default (state = INITIAL_STATE, {type, payload}: { type: any; payload: an
         case SEARCH_CANCELED:
             return {...state, searching: false, has_results: false, search_results: [], search_canceled: true};
 
-        // Indicate wether search can be done
-        case CAN_PERFORM_SEARCH:
-            return {...state, searching: true, search_canceled: false};
-
         // For debugging purpose. set this value to show the request url
         case SET_QUERY:
             return {...state, query: payload};

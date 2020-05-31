@@ -2,7 +2,9 @@ package com.moviesapp;
 
 import android.app.Application;
 import android.content.Context;
+
 import com.facebook.react.ReactApplication;
+import com.facebook.react.shell.MainReactPackage;
 import com.github.yamill.orientation.OrientationPackage;
 import com.brentvatne.react.ReactVideoPackage;
 import com.ijzerenhein.sharedelement.RNSharedElementPackage;
@@ -15,6 +17,7 @@ import com.facebook.soloader.SoLoader;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.swmansion.reanimated.ReanimatedPackage;
 import com.swmansion.rnscreens.RNScreensPackage;
+import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
@@ -32,6 +35,7 @@ public class MainApplication extends Application implements ReactApplication {
                 @Override
                 protected List<ReactPackage> getPackages() {
                     return Arrays.<ReactPackage>asList(
+                            new MainReactPackage(),
                             new RNScreensPackage(),
                             new RNScreensPackage(),
                             new RNSharedElementPackage(),
@@ -41,9 +45,9 @@ public class MainApplication extends Application implements ReactApplication {
                             new ReactVideoPackage(),
                             new RNGestureHandlerPackage(),
                             new VectorIconsPackage(),
-                            new LinearGradientPackage()
+                            new LinearGradientPackage(),
+                            new SafeAreaContextPackage()
                     );
-
 
                 }
 
@@ -62,7 +66,7 @@ public class MainApplication extends Application implements ReactApplication {
     public void onCreate() {
         super.onCreate();
         SoLoader.init(this, /* native exopackage */ false);
-        initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
+        //initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
     }
 
     /**

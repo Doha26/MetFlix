@@ -8,6 +8,7 @@ module.exports = {
     'import',
     'eslint-comments'
   ],
+
   env: {
     es6: true,
     node: true,
