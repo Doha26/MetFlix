@@ -1,5 +1,5 @@
 <p align="center">
-<img width="90" height="90" src="https://i.ibb.co/QQ3mbpq/logo.jpg">
+    <img width="90" height="90" src="https://i.ibb.co/QQ3mbpq/logo.jpg">
 </p>
 
 
@@ -23,6 +23,17 @@
 
  ## Improvements (IN PROGRESS)
 - [ ] Writing fully configurable and advanced video player with 
+- [ ] Fetch more items on scroll 
+
+##  Screen (Home)
+![App-demo](./src/screenshots/home_ios.png)
+
+##  Screen (Detail)
+![App-demo](./src/screenshots/detail_ios.png)
+
+
+##  Screen (Search)
+![App-demo](./src/screenshots/search_ios.png)
 
 
 ### Dependencies

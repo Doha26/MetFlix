@@ -12,7 +12,7 @@ const navigator = createSharedElementStackNavigator({
     detail: DetailScreen,
     player: PlayerScreen,
 }, {
-    initialRouteName: 'home', // Initial route,
+    initialRouteName: 'splash', // Initial route,
     headerMode: 'none',
     mode: 'modal',
     defaultNavigationOptions: () => ({

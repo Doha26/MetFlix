@@ -1,13 +1,13 @@
 import React, {Suspense} from 'react';
-import {SafeAreaProvider} from "react-native-safe-area-context";
 import {View, ScrollView, TouchableOpacity, ActivityIndicator, Platform} from 'react-native';
+import {Icon} from 'react-native-elements';
+import {SafeAreaProvider} from "react-native-safe-area-context";
 import Container from '~/components/common/Container';
 import HeaderBack from '~/components/common/header-back';
 import {NavigationScreenProp} from 'react-navigation';
 import Colors from '~/theming/colors';
 import Text from '~/components/common/Text';
 import BlackOverlay from '~/components/common/Overlay';
-import {Icon} from 'react-native-elements';
 import {SharedElement} from "react-native-shared-element";
 import {MovieType} from "~/types/Movie";
 import styles from "~/screens/Detail/styles";
@@ -26,11 +26,10 @@ const Detail = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
     // Lazy loading the background image
     const LazyImage = React.lazy(() => import('~/components/LazyImage/index'));
 
-
     return (
         <SafeAreaProvider>
             <Container>
-                <SharedElement id={`item.${id}.posterPath`}>
+                <SharedElement id={`item.${id}.poster_path`}>
                     <View style={Object.assign({},styles.container,{ width: WIDTH, height: HEIGHT})}>
                         <View style={Object.assign({},styles.imageWrapper,{width: WIDTH, height: HEIGHT})}>
                             <Suspense fallback={

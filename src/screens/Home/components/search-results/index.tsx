@@ -1,15 +1,16 @@
-import {NavigationScreenProp} from "react-navigation";
-import {View, FlatList,StyleSheet} from "react-native";
 import React from "react";
 import {useSelector} from "react-redux";
+import {NavigationScreenProp} from "react-navigation";
+import {View, FlatList,StyleSheet} from "react-native";
 import SearchResultItem from "~/screens/Home/components/search-results/search-result-tem";
 import {MovieType} from "~/types/Movie";
 import Colors from "~/theming/colors";
+import { SearchreducerType } from "~/types/SearchreducerType";
 
 const SearchResults = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
 
     // Get the result from redux store
-    const {search_results} = useSelector(({searchReducer}) => searchReducer);
+    const {search_results} = useSelector(({searchReducer}:{searchReducer:SearchreducerType}) => searchReducer);
 
     const renderItem = (item: MovieType) => {
         return (

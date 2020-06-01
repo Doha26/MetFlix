@@ -13,7 +13,7 @@ import {WIDTH} from "~/utils/dimensions";
 function PopularMovieItem({movie, navigation}: {
     movie: MovieType; navigation: NavigationScreenProp<any>;
 }) {
-
+    
     const {
         id,
         original_title,
