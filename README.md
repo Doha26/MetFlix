@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <p align="center">
     <img width="90" height="90" src="https://i.ibb.co/QQ3mbpq/logo.jpg">
 </p>
@@ -36,6 +37,12 @@
 ##  Screen (Search)
 ![App-demo](./src/screenshots/search_ios.png)
 
+=======
+# MetFlix
+* For this demo , i have been asked to build a fully functionnal movies react-native application. I dicided to call it MetFlix
+
+* This App is built on top of React Native with React.JS (Used React Hooks) , Typescript. 
+>>>>>>> 8dee40396a8712afb705b1f9250b9dae013257f5
 
 ### Dependencies
 
@@ -50,9 +57,15 @@
  
  On the command prompt run the following commands
  ```sh
+<<<<<<< HEAD
  $ git clone https://github.com/Doha26/MetFlix.git
  
  $ cd MetFlix
+=======
+ $ git clone https://github.com/Doha26/movie-app-demo.git
+ 
+ $ cd movie-app-demo
+>>>>>>> 8dee40396a8712afb705b1f9250b9dae013257f5
  
  $ npm install
  
@@ -62,6 +75,7 @@
  
  ```
  
+<<<<<<< HEAD
  ### Author
  
  *	[Pavel Foujeu](mailto:foujeupavel@gmail.com)
@@ -71,3 +85,5 @@
  *	[Instagram Clone ](https://github.com/Doha26/Instagram-clone)
  *	[Facebook challenge ](https://github.com/Doha26/Facebook-React-native)
 
+=======
+>>>>>>> 8dee40396a8712afb705b1f9250b9dae013257f5

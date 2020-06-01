@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Container from '~/components/common/Container';
-import {ActivityIndicator, Platform, TouchableOpacity, View} from 'react-native';
-import {Icon, SearchBar} from 'react-native-elements';
+import {ActivityIndicator, Platform, View} from 'react-native';
+import {SearchBar} from 'react-native-elements';
 import {NavigationScreenProp} from 'react-navigation';
 import Poster from '~/screens/Home/components/poster/Poster';
 import PopularMovieList from '~/screens/Home/components/popular-movies/PopularMovieList';

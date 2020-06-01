@@ -1,5 +1,4 @@
 import {
-    CAN_PERFORM_SEARCH,
     CANCEL_SEARCH, SEARCH_CANCELED,
     SEARCH_ERROR, SEARCH_PENDING, SEARCH_SUCCESS, SET_QUERY,
 } from '~/actions/search-actions/types';
@@ -45,7 +44,7 @@ export default (state = INITIAL_STATE, {type, payload}: { type: any; payload: an
         case SET_QUERY:
             return {...state, query: payload};
 
-        // on defqult cqse, return the stqte
+        // on default case, return the stqte
         default:
             return state;
     }
