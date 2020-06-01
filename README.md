@@ -24,6 +24,7 @@
  ## Improvements (IN PROGRESS)
 - [ ] Writing fully configurable and advanced video player with 
 - [ ] Fetch more items on scroll 
+- [ ] Build for Web using React-native-web
 
 ##  Screen (Home)
 ![App-demo](./src/screenshots/home_ios.png)
