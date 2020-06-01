@@ -33,7 +33,7 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
     const [pendingSearch, setPendingSearch] = useState(false);
 
     // Geting value from reux store to handle conditional rendering
-    const {searching, has_results, search_results} = useSelector(({searchReducer}:{searchReducer:SearchreducerType}) => searchReducer);
+    const {searching, has_results, search_results} = useSelector(({searchReducer}: { searchReducer: SearchreducerType }) => searchReducer);
 
     /* This method is triggered once user start typing on the search box */
     const performSearch = (value: string) => {
@@ -98,7 +98,7 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
                 paddingHorizontal: 10,
                 paddingVertical: 10,
                 backgroundColor: Colors.black,
-                paddingTop: Platform.select({ios: headerHeight-20, android: 50}),
+                paddingTop: Platform.select({ios: headerHeight - 20, android: 20}),
                 justifyContent: 'flex-end'
             }}>
                 <StatusBar/>
