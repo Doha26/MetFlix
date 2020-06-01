@@ -50,9 +50,9 @@
  
  On the command prompt run the following commands
  ```sh
- $ git clone https://github.com/Doha26/movie-app-demo.git
+ $ git clone https://github.com/Doha26/MetFlix.git
  
- $ cd movie-app-demo
+ $ cd MetFlix
  
  $ npm install
  
