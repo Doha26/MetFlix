@@ -6,7 +6,7 @@
 # MetFlix 
 
 >For this demo , i have been asked to build a fully functionnal movies react-native application. I dicided to call it MetFlix
- This App is built on top of React Native with React.JS (Used React Hooks) , Typescript. 
+ This App is built on top of React Native with React.JS (Used React Hooks) and Typescript. 
  
  ## Results
 - [x] Splashscreen
@@ -23,15 +23,22 @@
 
  ## Improvements (IN PROGRESS)
 - [ ] Writing fully configurable and advanced video player with 
+      better design than the default player (started)
 - [ ] Fetch more items on scroll 
 - [ ] Build for Web using React-native-web
 
-##  Screen (Home)
+
+ ## Demo 
+ ![App-demo](./src/screenshots/demo.gif)
+ 
+##  IOS Preview (Home)
 ![App-demo](./src/screenshots/home_ios.png)
+
+##  ANDROID Preview (Home)
+![App-demo](./src/screenshots/home_android.png)
 
 ##  Screen (Detail)
 ![App-demo](./src/screenshots/detail_ios.png)
-
 
 ##  Screen (Search)
 ![App-demo](./src/screenshots/search_ios.png)
@@ -39,7 +46,8 @@
 
 ### Dependencies
 
- - React Native (With Typescript)
+ - React Js (Used with React Hooks) + Typescript
+ - React Native
  - React Navigation
  - React-native-video
  - Others (See package.json at the root folder)
