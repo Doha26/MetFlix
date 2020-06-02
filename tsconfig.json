@@ -30,12 +30,12 @@
      "forceConsistentCasingInFileNames": true,
      "allowJs": true,
      "baseUrl": "./",
-     "include": ["./src/**/*.ts", "./src/**/*.tsx",",./src/typings/**/*/.d.ts"],
-     "exclude": ["node_modules", "build", "dist", "src/**/*.js", "src/**/*.jsx"],
      "paths": {
        "~/*": ["./src/*"]
      }
-   }
+   },
+   "include": ["./src/**/*.ts", "./src/**/*.tsx",",./src/typings/**/*/.d.ts"],
+   "exclude": ["node_modules", "build", "dist", "src/**/*.js", "src/**/*.jsx"]
  }
 
 

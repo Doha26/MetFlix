@@ -8,16 +8,22 @@ import Orientation from 'react-native-orientation';
 import {MovieType} from "~/types/Movie";
 import Video from 'react-native-video';
 import Container from "~/components/common/Container";
-import {SharedElement} from "react-native-shared-element";
+import {SharedElement, SharedElementsComponentConfig} from "react-navigation-shared-element";
 import {HEIGHT, WIDTH} from "~/utils/dimensions";
+import {NavigationProp} from "react-navigation-shared-element/src/types";
 
 
 const Player = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
 
     // Initial states
+    // @ts-ignore
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
+
+    // @ts-ignore
     const [paused, setPaused] = useState(false);
+
+    // @ts-ignore
     const [hidePlayButton, setHidePlayButton] = useState(false);
     const [deviceOrientation, setDeviceOrientation] = useState('');
 
@@ -38,6 +44,7 @@ const Player = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
     // Listen to layout effect to perfomr some actions. (Use full for actions concerning screen orientation)
     useLayoutEffect(() => {
         Orientation.getOrientation((err: any, orientation: Orientation.orientation) => {
+             console.log(err);
             setDeviceOrientation(orientation.toLowerCase());
             resizeVideoPlayer();
         });
@@ -115,14 +122,15 @@ const Player = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
     )
 };
 
-Player.sharedElements = (navigation: NavigationScreenProp<any>) => {
-    const item = navigation.getParam('movie');
+const sharedElements: SharedElementsComponentConfig = (navigation: NavigationProp) => {
+    const item: any = navigation.getParam();
     return [
         {
-            id: `item.${item.id}.video`,
+            id: `item.${item?.id}.video`,
             animation: 'fade'
         }
     ]
 };
 
+Player.sharedElements = sharedElements;
 export default Player;

@@ -6,10 +6,14 @@ const propTypes = {
     bold: PropTypes.bool,
     large: PropTypes.bool,
     small: PropTypes.bool,
+    numberOfLines: PropTypes.number,
     color: PropTypes.string,
     extraLarge: PropTypes.bool,
     style: PropTypes.shape({}),
-    children: PropTypes.string,
+    children: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]),
 };
 
 const defaultProps = {
@@ -24,6 +28,7 @@ const Text = ({
                   color,
                   large,
                   small,
+                  numberOfLines,
                   theme,
                   style,
                   children,
@@ -34,9 +39,10 @@ const Text = ({
     color?: string;
     large?: boolean;
     small?: boolean;
+    numberOfLines?: number,
     theme?: any;
     style: any;
-    children: string | undefined;
+    children: string | number | undefined;
     extraLarge?: boolean;
 
 }) => {
@@ -49,12 +55,10 @@ const Text = ({
     } else if (extraLarge) {
         textStyle.push({color: undefined, fontSize: 30});
     }
-    if (bold) {
-        textStyle.push({color: undefined, fontSize: 18, fontWeight: 'bold'});
-    }
 
     return (
         <RNText
+            numberOfLines={numberOfLines}
             {...props}
             style={[textStyle, style]}
         >

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {FlatList, TouchableOpacity, View} from 'react-native';
-import {withTheme} from '~/theming';
 import Text from '~/components/common/Text';
 import Colors from '~/theming/colors';
 import {styles} from './styles';
@@ -29,12 +28,11 @@ const List = ({
                   data,
                   horizontal,
                   title,
-                  theme,
                   subtitle,
                   renderItem,
                   keyExtractor,
                   onViewAllPress,
-              }: { data: any; horizontal: boolean; title: string; theme: any; subtitle: string; renderItem: any; keyExtractor: any; onViewAllPress: () => void }) => {
+              }: { data: any; horizontal: boolean; title: string; subtitle: string; renderItem: any; keyExtractor: any; onViewAllPress: () => void }) => {
     const {textContainer, containerContentStyle} = styles;
 
     return (
@@ -42,7 +40,6 @@ const List = ({
             <View style={textContainer}>
                 <View style={{flex: 1}}>
                     <Text
-                        color={theme.primaryColor}
                         large
                         style={{color: Colors.white}}
                     >
@@ -79,4 +76,4 @@ const List = ({
 List.propTypes = propTypes;
 List.defaultProps = defaultProps;
 
-export default withTheme(List);
+export default List;

@@ -1,16 +1,15 @@
 import React from "react";
 import {useSelector} from "react-redux";
 import {NavigationScreenProp} from "react-navigation";
-import {View, FlatList,StyleSheet} from "react-native";
+import {View, FlatList} from "react-native";
 import SearchResultItem from "~/screens/Home/components/search-results/search-result-tem";
 import {MovieType} from "~/types/Movie";
-import Colors from "~/theming/colors";
-import { SearchreducerType } from "~/types/SearchreducerType";
+import {SearchReducerType} from "~/types/SearchReducerType";
 
 const SearchResults = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
 
     // Get the result from redux store
-    const {search_results} = useSelector(({searchReducer}:{searchReducer:SearchreducerType}) => searchReducer);
+    const {search_results} = useSelector(({searchReducer}:{searchReducer:SearchReducerType}) => searchReducer);
 
     const renderItem = (item: MovieType) => {
         return (
@@ -38,14 +37,4 @@ const SearchResults = ({navigation}: { navigation: NavigationScreenProp<any> }) 
         </View>
     );
 };
-
-
-const styles = StyleSheet.create({
-    countResultTitle:{
-        fontSize: 16,
-        marginTop: 3,
-        fontWeight: '500',
-        color: Colors.lightGrey
-    }
-});
 export default SearchResults;

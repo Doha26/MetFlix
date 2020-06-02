@@ -23,7 +23,7 @@ const HeaderBack = ({onPress, title, subtitle, landScapeMode}: { onPress: () => 
     <View style={[styles.container, {marginLeft: landScapeMode ? 40 : 16, marginTop: landScapeMode ? 4 : 20,}]}>
         <TouchableOpacity onPress={onPress}>
             <Icon
-                large
+                large={true}
                 name="arrow-left"
             />
         </TouchableOpacity>

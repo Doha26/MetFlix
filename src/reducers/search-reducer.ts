@@ -2,9 +2,9 @@ import {
     CANCEL_SEARCH, SEARCH_CANCELED,
     SEARCH_ERROR, SEARCH_PENDING, SEARCH_SUCCESS, SET_QUERY,
 } from '~/actions/search-actions/types';
-import {SearchreducerType} from "~/types/SearchreducerType";
+import {SearchReducerType} from "~/types/SearchReducerType";
 
-const INITIAL_STATE: SearchreducerType = {
+const INITIAL_STATE: SearchReducerType = {
     query: '',
     searching: false,
     has_results: false,

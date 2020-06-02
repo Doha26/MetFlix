@@ -1,4 +1,4 @@
-export interface SearchreducerType {
+export interface SearchReducerType {
     query: string,
     searching: boolean,
     has_results: boolean,

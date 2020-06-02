@@ -16,7 +16,7 @@ const navigator = createSharedElementStackNavigator({
     headerMode: 'none',
     mode: 'modal',
     defaultNavigationOptions: () => ({
-        header: null,
+        header: undefined,
 
     }),
 });

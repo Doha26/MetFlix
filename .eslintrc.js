@@ -22,6 +22,7 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
     project: [
+      './tsconfig.jest.json',
       './tsconfig.eslint.json',
       './tsconfig.build.json',
     ],

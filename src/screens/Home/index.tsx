@@ -16,7 +16,7 @@ import {cancelSearch, search} from '~/actions/search-actions/index'
 import StatusBar from "~/components/common/StatusBar";
 import styles from "~/screens/Home/styles";
 import {useHeaderHeight} from "react-navigation-stack";
-import {SearchreducerType} from "~/types/SearchreducerType";
+import {SearchReducerType} from "~/types/SearchReducerType";
 
 const {searchStats, countResultTitle} = styles;
 
@@ -33,7 +33,7 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
     const [pendingSearch, setPendingSearch] = useState(false);
 
     // Geting value from reux store to handle conditional rendering
-    const {searching, has_results, search_results} = useSelector(({searchReducer}: { searchReducer: SearchreducerType }) => searchReducer);
+    const {searching, has_results, search_results} = useSelector(({searchReducer}: { searchReducer: SearchReducerType }) => searchReducer);
 
     /* This method is triggered once user start typing on the search box */
     const performSearch = (value: string) => {
@@ -114,7 +114,7 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
                 {pendingSearch ? (
                     <View style={searchStats}>
                         <Text numberOfLines={2} small style={countResultTitle}>
-                            {search_results?.length} items found
+                            {`${search_results?.length} items found`}
                         </Text>
                     </View>
                 ) : null}

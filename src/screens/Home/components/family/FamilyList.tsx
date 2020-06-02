@@ -13,6 +13,7 @@ const FamilyList = () => {
 
     //const loading = false;
     const {response, loading} = useFetch({path: THEMOVIEDB_QUERY_TYPE.POPULAR_MOVIES});
+    // @ts-ignore
     const {results: data} = response || {};
 
     // In order to search genres family , first get the list of genres
@@ -32,7 +33,6 @@ const FamilyList = () => {
             ? <Loading/>
             : (
                 <List
-                    theme={null}
                     horizontal={true}
                     data={family_genres_movies}
                     title="Family"

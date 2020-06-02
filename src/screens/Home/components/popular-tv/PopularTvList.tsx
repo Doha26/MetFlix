@@ -9,13 +9,14 @@ import {THEMOVIEDB_QUERY_TYPE} from "~/constants";
 const PopularTvList = () => {
 
     const {response, loading} = useFetch({path: THEMOVIEDB_QUERY_TYPE.POPULAR_TV});
+
+    // @ts-ignore
     const {results: data} = response || {};
 
     return (loading
             ? <Loading/>
             : (
                 <List
-                    theme={null}
                     horizontal={true}
                     data={data}
                     title="Popular tv series"

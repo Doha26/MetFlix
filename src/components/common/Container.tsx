@@ -1,7 +1,7 @@
 import React from 'react';
 import {ScrollView, SafeAreaView} from 'react-native';
 import PropTypes from 'prop-types';
-import {withTheme} from '~/theming/index';
+import Colors from '~/theming/colors';
 
 const propTypes = {
   children: PropTypes.oneOfType([
@@ -20,17 +20,14 @@ const defaultProps = {
 };
 
 const Container = ({
-                     theme,
                      onScroll,
                      children,
-                     transparency,
                    }: {
-  theme?: any;
   onScroll?: (offset: number) => void;
   children?: React.ReactNode;
   transparency?: boolean;
 }) => (
-  <SafeAreaView style={{flex: 1, backgroundColor: !transparency ? theme.background : 'rgba(0, 0, 0, 0.7)'}}>
+  <SafeAreaView style={{flex: 1, backgroundColor:Colors.black}}>
     <ScrollView
       scrollEventThrottle={1}
       onScroll={({nativeEvent}) => onScroll ? onScroll(nativeEvent.contentOffset.y) : null}
@@ -44,4 +41,4 @@ const Container = ({
 Container.propTypes = propTypes;
 Container.defaultProps = defaultProps;
 
-export default withTheme(Container);
+export default Container;

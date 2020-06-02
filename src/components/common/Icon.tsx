@@ -17,7 +17,7 @@ const defaultProps = {
 const Icon = ({
                 name,
                 color, large,
-              }: {name: string; color: string; large?: string}) => (
+              }: {name: string; color: string; large?: boolean}) => (
   <Feather
     name={name}
     size={!large ? 20 : 28}

@@ -6,7 +6,7 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "test": "jest",
+    "test": "jest --no-cache",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "release-ios": "react-native run-ios --configuration Release",
     "release-android": "react-native run-android --configuration Release",
@@ -17,6 +17,8 @@
     "@react-native-community/async-storage": "^1.11.0",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-community/slider": "^3.0.0",
+    "@types/enzyme": "^3.10.5",
+    "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/react-native-orientation": "^5.0.1",
     "@types/react-native-video": "^5.0.1",
     "axios": "^0.19.2",
@@ -51,6 +53,9 @@
     "node": "^10.12.0 || >=12.0.0"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-react": "^7.10.1",
     "@babel/runtime": "^7.6.2",
     "@types/jest": "^24.0.24",
     "@types/react-native": "^0.62.0",
@@ -62,6 +67,8 @@
     "babel-jest": "^24.9.0",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "babel-preset-react-native": "4.0.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^7.0.0",
     "eslint-config-airbnb": "^17.1.1",
     "eslint-import-resolver-babel-plugin-root-import": "^1.1.1",
@@ -73,10 +80,12 @@
     "eslint-plugin-react-native": "^3.8.1",
     "husky": "^4.2.5",
     "jest": "^24.9.0",
+    "jest-fetch-mock": "^3.0.3",
     "lint-staged": "^10.2.2",
     "markdownlint-cli": "^0.23.0",
     "metro-react-native-babel-preset": "^0.58.0",
     "prettier": "^2.0.4",
+    "react-dom": "^16.13.1",
     "react-test-renderer": "16.11.0",
     "ts-jest": "^25.5.1",
     "ts-node": "^8.10.1",
@@ -85,12 +94,37 @@
   },
   "jest": {
     "preset": "react-native",
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js",
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "tsconfig.jest.json"
+      }
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "moduleFileExtensions": [
-      ".png",
       "ts",
+      "js",
       "tsx",
+      "jsx",
       "json",
       "node"
+    ],
+    "moduleNameMapper": {
+      "~/(.*)": "<rootDir>/src/$1"
+    },
+    "modulePaths": [
+      "<rootDir>",
+      "src"
+    ],
+    "setupFiles": [
+      "./__tests__/setup.js",
+      "./node_modules/react-native-gesture-handler/jestSetup.js"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!@ngrx|(?!deck.gl)|ng-dynamic)"
     ]
   }
 }

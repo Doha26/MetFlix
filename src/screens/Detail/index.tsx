@@ -8,12 +8,13 @@ import {NavigationScreenProp} from 'react-navigation';
 import Colors from '~/theming/colors';
 import Text from '~/components/common/Text';
 import BlackOverlay from '~/components/common/Overlay';
-import {SharedElement} from "react-native-shared-element";
+import {SharedElement, SharedElementsComponentConfig} from "react-navigation-shared-element";
 import {MovieType} from "~/types/Movie";
 import styles from "~/screens/Detail/styles";
 import {useRessource} from "~/hooks/use-ressource";
 import {HEIGHT, WIDTH} from "~/utils/dimensions";
 import moment from "moment";
+import {NavigationProp} from "react-navigation-shared-element/src/types";
 
 const Detail = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
 
@@ -30,8 +31,8 @@ const Detail = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
         <SafeAreaProvider>
             <Container>
                 <SharedElement id={`item.${id}.poster_path`}>
-                    <View style={Object.assign({},styles.container,{ width: WIDTH, height: HEIGHT})}>
-                        <View style={Object.assign({},styles.imageWrapper,{width: WIDTH, height: HEIGHT})}>
+                    <View style={Object.assign({}, styles.container, {width: WIDTH, height: HEIGHT})}>
+                        <View style={Object.assign({}, styles.imageWrapper, {width: WIDTH, height: HEIGHT})}>
                             <Suspense fallback={
                                 <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                                     <ActivityIndicator
@@ -70,7 +71,7 @@ const Detail = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
                         extraLarge
                         numberOfLines={1}
                         style={styles.subTitleStyle}>
-                        {`Released date : ${movie.release_date ? moment(movie.release_date).format("MMMM DD, YYYY") :  moment(movie.first_air_date).format("MMMM DD, YYYY")}`}
+                        {`Released date : ${movie.release_date ? moment(movie.release_date).format("MMMM DD, YYYY") : moment(movie.first_air_date).format("MMMM DD, YYYY")}`}
                     </Text>
                     <ScrollView showsHorizontalScrollIndicator={false}
                                 showsVerticalScrollIndicator={false}>
@@ -86,17 +87,19 @@ const Detail = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
 };
 
 // Add custom config for shared element transitions items
-Detail.sharedElements = (navigation: NavigationScreenProp<any>) => {
-    const item = navigation.getParam('movie');
+const sharedElements: SharedElementsComponentConfig = (navigation: NavigationProp) => {
+    const item: any = navigation.getParam();
     return [
         {
-            id: `item.${item.id}.posterPath`,
+            id: `item.${item?.id}.posterPath`,
             animation: 'fade'
         },
         {
-            id: `item.${item.id}.title`,
+            id: `item.${item?.id}.title`,
             animation: 'fade'
         }];
 };
+
+Detail.sharedElements = sharedElements;
 
 export default Detail;

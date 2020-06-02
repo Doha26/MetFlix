@@ -14,6 +14,7 @@ function Poster({navigation: {navigate}}: { navigation: NavigationScreenProp<any
 
     const {response} = useFetch({path: 'movie/top_rated'});
 
+    // @ts-ignore
     const {results: data} = response || {};
 
     // Get a random integer between O and 20;

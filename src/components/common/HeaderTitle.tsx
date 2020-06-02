@@ -1,16 +1,16 @@
 import React from 'react';
 import {View, Platform, StyleSheet} from 'react-native';
 import PropTypes from 'prop-types';
-import {withTheme} from '~/theming/index';
 import Text from './Text';
+import Colors from '~/theming/colors';
 
 const propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-const HeaderTitle = ({title, theme}: {title: string; theme: any}) => (
+const HeaderTitle = ({title}: {title: string;}) => (
   <View style={styles.headerContainer}>
-    <Text bold color={theme.primaryColor}>
+    <Text bold color={Colors.white}>
       {title}
     </Text>
   </View>
@@ -30,4 +30,4 @@ const styles = StyleSheet.create({
 
 HeaderTitle.propTypes = propTypes;
 
-export default withTheme(HeaderTitle);
+export default HeaderTitle;

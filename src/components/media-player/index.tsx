@@ -9,21 +9,19 @@ import Text from '~/components/common/Text';
 
 
 export default function MediaPlayer({
-                                        title,
                                         currentPosition,
                                         duration,
                                         paused,
                                         hidePlayButton,
-                                        onBack,
                                         onChangePosition,
                                         onPause,
                                     }: {
-    title: string;
+    title?: string;
     currentPosition: number,
     duration: number;
     paused: boolean;
     hidePlayButton: boolean;
-    onBack: () => void;
+    onBack?: () => void;
     onChangePosition: (position: number) => void;
     onPause: (flag: boolean) => void;
 }) {
