@@ -5,7 +5,7 @@
 
 # MetFlix 
 
->For this demo , i have been asked to build a fully functionnal movies react-native application. I dicided to call it MetFlix
+>I have been asked to build a proptotype of q functionnal movies react-native application. I dicided to call it MetFlix
  This App is built on top of React Native with React.JS (Used React Hooks) and Typescript. 
  
  ## Results
@@ -31,16 +31,16 @@
  ## Demo 
  ![App-demo](./src/screenshots/demo.gif)
  
-##  IOS Preview (Home)
+##  IOS Preview
 ![App-demo](./src/screenshots/home_ios.png)
 
-##  ANDROID Preview (Home)
+##  ANDROID Preview
 ![App-demo](./src/screenshots/home_android.png)
 
-##  Screen (Detail)
+##  Screen Detail
 ![App-demo](./src/screenshots/detail_ios.png)
 
-##  Screen (Search)
+##  Screen Search
 ![App-demo](./src/screenshots/search_ios.png)
 
 
