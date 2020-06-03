@@ -23,9 +23,9 @@
 
  ## Improvements (IN PROGRESS)
 - [ ] Writing fully configurable and advanced video player with 
-      better design than the default player (started)
-- [ ] Fetch more items on scroll 
+      better design than the default player (started) 
 - [ ] Build for Web using React-native-web
+- [ ] Light and Dark theme Switcher for Multi-theming support.
 
 
  ## Demo 
