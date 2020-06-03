@@ -62,9 +62,11 @@
  
  $ cd MetFlix
  
- $ npm install
+ $ yarn  OR npm install (if you are using npm )
+
+ $ react-native link
  
- $ cd ios && pod install && cd..
+ $ cd ios && pod install && cd.. (For iOS build)
  
  $ react-native run-ios  OR  react-native run-android
  
