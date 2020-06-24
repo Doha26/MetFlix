@@ -1,6 +1,6 @@
 import React, {Suspense} from 'react';
 import {NavigationScreenProp, withNavigation} from 'react-navigation';
-import {View, ActivityIndicator, Platform} from 'react-native';
+import {View, ActivityIndicator, Platform, GestureResponderEvent} from 'react-native';
 import Text from '~/components/common/Text';
 import {MovieType} from '~/types/Movie';
 import LinearGradient from 'react-native-linear-gradient';
@@ -11,8 +11,8 @@ import {WIDTH} from "~/utils/dimensions";
 import TouchableWithPopup from "~/components/common/touchable";
 
 
-function DocumentaryItem({movie, navigation}: {
-    movie: MovieType; navigation: NavigationScreenProp<any>;
+function DocumentaryItem({movie, navigation, onLongPress}: {
+    movie: MovieType; navigation: NavigationScreenProp<any>; onLongPress: (event: GestureResponderEvent) => void;
 }) {
 
     const {
@@ -30,6 +30,7 @@ function DocumentaryItem({movie, navigation}: {
     return (
         <View style={styles.container}>
             <TouchableWithPopup
+                onLongPress={onLongPress}
                 onPress={() => navigation.navigate('detail', {'movie': movie})}
                 style={styles.imageWrapper}>
                 <Suspense fallback={

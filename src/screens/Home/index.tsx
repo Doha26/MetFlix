@@ -1,6 +1,13 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import Container from '~/components/common/Container';
-import {ActivityIndicator, Platform, View} from 'react-native';
+import {
+    ActivityIndicator,
+    findNodeHandle,
+    GestureResponderEvent,
+    InteractionManager,
+    Platform, TouchableOpacity,
+    View
+} from 'react-native';
 import {SearchBar} from 'react-native-elements';
 import {NavigationScreenProp} from 'react-navigation';
 import Poster from '~/screens/Home/components/poster/Poster';
@@ -17,6 +24,8 @@ import StatusBar from "~/components/common/StatusBar";
 import styles from "~/screens/Home/styles";
 import {useHeaderHeight} from "react-navigation-stack";
 import {SearchReducerType} from "~/types/SearchReducerType";
+import {BlurView} from "@react-native-community/blur";
+import {HEIGHT, WIDTH} from "~/utils/dimensions";
 
 const {searchStats, countResultTitle} = styles;
 
@@ -31,9 +40,11 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
     // State initialisation
     const [query, setQuery] = useState('');
     const [pendingSearch, setPendingSearch] = useState(false);
-
+    const [itemPressed, setItemPressed] = useState(false);
+    
     // Geting value from reux store to handle conditional rendering
     const {searching, has_results, search_results} = useSelector(({searchReducer}: { searchReducer: SearchReducerType }) => searchReducer);
+
 
     /* This method is triggered once user start typing on the search box */
     const performSearch = (value: string) => {
@@ -69,13 +80,20 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
         }
     };
 
+    // when a movie is long pressed, display blur view
+    const onItemPressed = (event: GestureResponderEvent) => {
+        setItemPressed(true);
+        console.log(event);
+    };
+
+
     const homeContent = (
         <View style={{marginTop: 20}}>
             <Poster/>
-            <PopularMovieList/>
-            <PopularTvList/>
-            <FamilyList/>
-            <DocumentaryList/>
+            <PopularMovieList onLongPress={onItemPressed}/>
+            <PopularTvList onLongPress={onItemPressed}/>
+            <FamilyList onLongPress={onItemPressed}/>
+            <DocumentaryList onLongPress={onItemPressed}/>
         </View>
     );
 
@@ -93,6 +111,7 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
     );
 
     return (
+
         <>
             <View style={{
                 paddingHorizontal: 10,
@@ -119,6 +138,24 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
                     </View>
                 ) : null}
             </View>
+            {Platform.OS === 'ios' && (
+                itemPressed ? <BlurView
+                    style={{
+                        position: 'absolute', top: 0,
+                        left: 0,
+                        bottom: 0,
+                        right: 0,
+                        zIndex: 900
+                    }}
+                    blurRadius={10}
+                    overlayColor={Colors.white}
+                    blurType="light"
+                    blurAmount={3}>
+                    <TouchableOpacity style={{flex: 1}} onPress={() => setItemPressed(false)}>
+
+                    </TouchableOpacity>
+                </BlurView> : null
+            )}
             <Container>
                 {searching ? (
                     has_results ? resultContent :

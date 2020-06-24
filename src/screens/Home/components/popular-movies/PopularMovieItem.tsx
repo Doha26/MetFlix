@@ -1,6 +1,6 @@
 import React, {Suspense} from 'react';
 import {NavigationScreenProp, withNavigation} from 'react-navigation';
-import {ActivityIndicator, Platform, View} from 'react-native';
+import {ActivityIndicator, GestureResponderEvent, Platform, View} from 'react-native';
 import Text from '~/components/common/Text';
 import {MovieType} from '~/types/Movie';
 import LinearGradient from 'react-native-linear-gradient';
@@ -11,8 +11,8 @@ import {useRessource} from "~/hooks/use-ressource";
 import {WIDTH} from "~/utils/dimensions";
 import TouchableWithPopup from "~/components/common/touchable";
 
-function PopularMovieItem({movie, navigation}: {
-    movie: MovieType; navigation: NavigationScreenProp<any>;
+function PopularMovieItem({movie, navigation, onLongPress}: {
+    movie: MovieType; navigation: NavigationScreenProp<any>; onLongPress: (event:GestureResponderEvent) => void
 }) {
 
     const {
@@ -32,8 +32,9 @@ function PopularMovieItem({movie, navigation}: {
         <SharedElement id={`item.${id}.poster_path`}>
             <View style={styles.container}>
                 <TouchableWithPopup
-                                  onPress={() => navigation.navigate('detail', {'movie': movie})}
-                                  style={styles.imageWrapper}>
+                    onLongPress={onLongPress}
+                    onPress={() => navigation.navigate('detail', {'movie': movie})}
+                    style={styles.imageWrapper}>
 
                     <Suspense fallback={
                         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>

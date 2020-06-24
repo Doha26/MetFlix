@@ -6,8 +6,9 @@ import DocumentaryItem from '~/screens/Home/components/documentary/DocumentaryIt
 import useFetch from "~/hooks/use-fetch";
 import {QueryResponse} from "~/types/QueryResponse";
 import {THEMOVIEDB_QUERY_TYPE} from "~/constants";
+import {GestureResponderEvent} from "react-native";
 
-const DocumentaryList = () => {
+const DocumentaryList = ({onLongPress}: { onLongPress: (event: GestureResponderEvent) => void }) => {
 
     const documentary_genres_movies: any = [], documentary_flag = 'documentary';
 
@@ -40,7 +41,7 @@ const DocumentaryList = () => {
                     onViewAllPress={() => console.log(1)}
                     keyExtractor={({id}: { id: string }) => String(id)}
                     subtitle="Documentary you will like"
-                    renderItem={({item}: { item: MovieType }) => <DocumentaryItem movie={item}/>}
+                    renderItem={({item}: { item: MovieType }) => <DocumentaryItem movie={item} onLongPress={onLongPress}/>}
                 />
             )
     );

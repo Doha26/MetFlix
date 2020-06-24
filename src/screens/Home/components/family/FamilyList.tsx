@@ -6,8 +6,9 @@ import FamilyItem from '~/screens/Home/components/family/FamilyItem';
 import useFetch from "~/hooks/use-fetch";
 import {QueryResponse} from "~/types/QueryResponse";
 import {THEMOVIEDB_QUERY_TYPE} from "~/constants";
+import {GestureResponderEvent} from "react-native";
 
-const FamilyList = () => {
+const FamilyList = ({onLongPress}:{onLongPress:(event: GestureResponderEvent)=>void}) => {
 
     const family_genres_movies: any = [], family_flag = 'family';
 
@@ -40,7 +41,7 @@ const FamilyList = () => {
                     }}
                     keyExtractor={({id}: { id: string }) => String(id)}
                     subtitle="Enjoy tv with your family"
-                    renderItem={({item}: { item: MovieType }) => <FamilyItem movie={item}/>}
+                    renderItem={({item}: { item: MovieType }) => <FamilyItem movie={item} onLongPress={onLongPress}/>}
                 />
             )
     );

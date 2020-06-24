@@ -5,8 +5,9 @@ import {MovieType} from '~/types/Movie';
 import PopularTvItem from './PopularTvItem';
 import useFetch from "~/hooks/use-fetch";
 import {THEMOVIEDB_QUERY_TYPE} from "~/constants";
+import {GestureResponderEvent} from "react-native";
 
-const PopularTvList = () => {
+const PopularTvList = ({onLongPress}: { onLongPress: (event: GestureResponderEvent) => void }) => {
 
     const {response, loading} = useFetch({path: THEMOVIEDB_QUERY_TYPE.POPULAR_TV});
 
@@ -24,7 +25,8 @@ const PopularTvList = () => {
                     }}
                     keyExtractor={({id}: { id: string }) => String(id)}
                     subtitle="Most popular tv series in the world"
-                    renderItem={({item}: { item: MovieType }) => <PopularTvItem movie={item}/>}
+                    renderItem={({item}: { item: MovieType }) => <PopularTvItem movie={item}
+                                                                                onLongPress={onLongPress}/>}
                 />
             )
     );
