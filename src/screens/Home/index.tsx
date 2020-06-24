@@ -8,8 +8,9 @@ import {
     Platform, TouchableOpacity,
     View
 } from 'react-native';
-import {SearchBar} from 'react-native-elements';
+import {Divider, ListItem, SearchBar} from 'react-native-elements';
 import {NavigationScreenProp} from 'react-navigation';
+import TouchableScale from 'react-native-touchable-scale';
 import Poster from '~/screens/Home/components/poster/Poster';
 import PopularMovieList from '~/screens/Home/components/popular-movies/PopularMovieList';
 import PopularTvList from '~/screens/Home/components/popular-tv/PopularTvList';
@@ -28,6 +29,8 @@ import {BlurView} from "@react-native-community/blur";
 import {MovieType} from "~/types/Movie";
 import PopularMovieItem from "~/screens/Home/components/popular-movies/PopularMovieItem";
 import {HEIGHT} from "~/utils/dimensions";
+import AuxHOC from "~/container/AuxHOC";
+import  menuItems from "~/utils/data/menuItems"
 
 const {searchStats, countResultTitle} = styles;
 
@@ -58,6 +61,8 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
     const [selectedPositionX, setSelectedPositionX] = useState(0);
     const [selectedPositionY, setSelectedPositionY] = useState(0);
 
+
+
     // Geting value from reux store to handle conditional rendering
     const {searching, has_results, search_results} = useSelector(({searchReducer}: { searchReducer: SearchReducerType }) => searchReducer);
 
@@ -66,7 +71,6 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
     const performSearch = (value: string) => {
 
         if (value != '') {  // if the input value is not empty
-
             // notify the component to display loader by updating the state value
             setPendingSearch(true);
             setQuery(value);
@@ -185,8 +189,24 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
                             top: selectedPositionY,
                             left: selectedPositionX
                         }}>
-                            <View style={{backgroundColor: Colors.darkBlue, borderRadius: 10, height: 150, width: 300}}>
-
+                            <View style={{backgroundColor: Colors.darkBlue, borderRadius: 10, width: 300}}>
+                                {menuItems.map((item, index) => (
+                                    <AuxHOC key={item.id}>
+                                        <ListItem
+                                            Component={TouchableScale}
+                                            friction={90}
+                                            tension={100}
+                                            activeScale={0.95}
+                                            key={item.id}
+                                            rightIcon={{ name: item.icon , color: Colors.white }}
+                                            title={item.title}
+                                            titleStyle={{color:Colors.white}}
+                                            containerStyle={{backgroundColor:Colors.transparent}}
+                                        />
+                                        {index != menuItems.length - 1 ? (<Divider style={{backgroundColor: Colors.white}}/>)
+                                            : null}
+                                    </AuxHOC>
+                                ))}
                             </View>
                             <PopularMovieItem movie={selectedMovie}
                                               absolute={true}
