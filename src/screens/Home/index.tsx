@@ -30,7 +30,7 @@ import {MovieType} from "~/types/Movie";
 import PopularMovieItem from "~/screens/Home/components/popular-movies/PopularMovieItem";
 import {HEIGHT} from "~/utils/dimensions";
 import AuxHOC from "~/container/AuxHOC";
-import  menuItems from "~/utils/data/menuItems"
+import menuItems from "~/utils/data/menuItems"
 
 const {searchStats, countResultTitle} = styles;
 
@@ -60,7 +60,7 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
     const [selectedMovie, setSelectedMovie] = useState(defaultMovie);
     const [selectedPositionX, setSelectedPositionX] = useState(0);
     const [selectedPositionY, setSelectedPositionY] = useState(0);
-
+    const [shouldRenderItemTop, setShouldRenderItemTop] = useState(false);
 
 
     // Geting value from reux store to handle conditional rendering
@@ -105,11 +105,19 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
         setItemPressed(true);
         setSelectedMovie(movieItem);
         setSelectedPositionX(event.nativeEvent.locationX);
-        setSelectedPositionY(event.nativeEvent.pageY);
 
-        console.log(HEIGHT / 2);
+        const offsetY = HEIGHT - event.nativeEvent.pageY;
+        console.log("offset => " + offsetY);
 
-        console.log(event);
+        if (offsetY < HEIGHT / 2) { // If user press long on the Botom hallf part of the screen
+            setShouldRenderItemTop(true); // Render popup menu with Item on top
+            setSelectedPositionY(event.nativeEvent.pageY - 160);
+        } else {
+            setShouldRenderItemTop(false); // Render popup menu with Item on bottom
+            setSelectedPositionY(event.nativeEvent.pageY);
+        }
+
+        //console.log(event);
     };
 
 
@@ -136,6 +144,68 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
             }}>No result found</Text>
         </View>
     );
+
+    const renderMenuWithItemMovieOnTop = (
+        <AuxHOC>
+            <PopularMovieItem movie={selectedMovie}
+                              absoluteItemStyle={{top: -260}}
+                              absolute={true}/>
+            <View style={{backgroundColor: Colors.darkBlue, borderRadius: 10, marginTop: 10, width: 300}}>
+                {menuItems.map((item, index) => (
+                    <AuxHOC key={item.id}>
+                        <ListItem
+                            Component={TouchableScale}
+                            friction={90}
+                            tension={100}
+                            activeScale={0.95}
+                            key={item.id}
+                            rightIcon={{name: item.icon, color: Colors.white}}
+                            title={item.title}
+                            titleStyle={{color: Colors.white}}
+                            containerStyle={{backgroundColor: Colors.transparent}}
+                        />
+                        {index != menuItems.length - 1 ? (
+                                <Divider style={{backgroundColor: Colors.white}}/>)
+                            : null}
+                    </AuxHOC>
+                ))}
+            </View>
+        </AuxHOC>
+    );
+
+    const renderMenuWithItemMovieOnBottom = (
+        <>
+            <View style={{backgroundColor: Colors.darkBlue, borderRadius: 10, width: 300}}>
+                {menuItems.map((item, index) => (
+                    <AuxHOC key={item.id}>
+                        <ListItem
+                            Component={TouchableScale}
+                            friction={90}
+                            tension={100}
+                            activeScale={0.95}
+                            key={item.id}
+                            rightIcon={{name: item.icon, color: Colors.white}}
+                            title={item.title}
+                            titleStyle={{color: Colors.white}}
+                            containerStyle={{backgroundColor: Colors.transparent}}
+                        />
+                        {index != menuItems.length - 1 ? (
+                                <Divider style={{backgroundColor: Colors.white}}/>)
+                            : null}
+                    </AuxHOC>
+                ))}
+            </View>
+            <PopularMovieItem movie={selectedMovie}
+                              absolute={true}
+                              absoluteItemStyle={{marginTop: 10}}/>
+        </>
+    );
+
+    const renderPopupMenuContent = () => {
+        return shouldRenderItemTop ?
+            renderMenuWithItemMovieOnTop
+            : renderMenuWithItemMovieOnBottom
+    };
 
     return (
         <>
@@ -186,28 +256,7 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
                             top: selectedPositionY,
                             left: selectedPositionX
                         }}>
-                            <View style={{backgroundColor: Colors.darkBlue, borderRadius: 10, width: 300}}>
-                                {menuItems.map((item, index) => (
-                                    <AuxHOC key={item.id}>
-                                        <ListItem
-                                            Component={TouchableScale}
-                                            friction={90}
-                                            tension={100}
-                                            activeScale={0.95}
-                                            key={item.id}
-                                            rightIcon={{ name: item.icon , color: Colors.white }}
-                                            title={item.title}
-                                            titleStyle={{color:Colors.white}}
-                                            containerStyle={{backgroundColor:Colors.transparent}}
-                                        />
-                                        {index != menuItems.length - 1 ? (<Divider style={{backgroundColor: Colors.white}}/>)
-                                            : null}
-                                    </AuxHOC>
-                                ))}
-                            </View>
-                            <PopularMovieItem movie={selectedMovie}
-                                              absolute={true}
-                                              absoluteItemStyle={{marginTop: 10}}/>
+                            {renderPopupMenuContent()}
                         </View>
                     </TouchableOpacity>
                 </BlurView> : null
