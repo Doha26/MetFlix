@@ -1,6 +1,6 @@
 import React, {Suspense} from 'react';
 import {NavigationScreenProp, withNavigation} from 'react-navigation';
-import {View, TouchableOpacity, ActivityIndicator, Platform} from 'react-native';
+import {View, ActivityIndicator, Platform} from 'react-native';
 import Text from '~/components/common/Text';
 import {MovieType} from '~/types/Movie';
 import LinearGradient from 'react-native-linear-gradient';
@@ -8,6 +8,7 @@ import Colors from '~/theming/colors';
 import styles from "~/screens/Home/components/documentary/style";
 import {useRessource} from "~/hooks/use-ressource";
 import {WIDTH} from "~/utils/dimensions";
+import TouchableWithPopup from "~/components/common/touchable";
 
 
 function DocumentaryItem({movie, navigation}: {
@@ -28,9 +29,9 @@ function DocumentaryItem({movie, navigation}: {
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity activeOpacity={0.7}
-                              onPress={() => navigation.navigate('detail', {'movie': movie})}
-                              style={styles.imageWrapper}>
+            <TouchableWithPopup
+                onPress={() => navigation.navigate('detail', {'movie': movie})}
+                style={styles.imageWrapper}>
                 <Suspense fallback={
                     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                         <ActivityIndicator
@@ -57,7 +58,7 @@ function DocumentaryItem({movie, navigation}: {
                         {overview}
                     </Text>
                 </LinearGradient>
-            </TouchableOpacity>
+            </TouchableWithPopup>
         </View>
     );
 }

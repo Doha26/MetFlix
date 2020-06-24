@@ -1,12 +1,13 @@
 import React, {Suspense} from 'react';
 import {NavigationScreenProp, withNavigation} from 'react-navigation';
-import {View, TouchableOpacity, StyleSheet, ActivityIndicator, Platform} from 'react-native';
+import {View, StyleSheet, ActivityIndicator, Platform} from 'react-native';
 import Text from '~/components/common/Text';
 import {MovieType} from '~/types/Movie';
 import LinearGradient from 'react-native-linear-gradient';
 import Colors from '~/theming/colors';
 import {useRessource} from "~/hooks/use-ressource";
 import {WIDTH} from "~/utils/dimensions";
+import TouchableWithPopup from "~/components/common/touchable";
 
 
 function FamilyItem({movie, navigation}: {
@@ -29,7 +30,7 @@ function FamilyItem({movie, navigation}: {
     // @ts-ignore
     return (
         <View style={styles.container}>
-            <TouchableOpacity activeOpacity={0.7}
+            <TouchableWithPopup
                               onPress={() => navigation.navigate('detail', {'movie': movie})}
                               style={styles.imageWrapper}>
 
@@ -59,7 +60,7 @@ function FamilyItem({movie, navigation}: {
                         {overview}
                     </Text>
                 </LinearGradient>
-            </TouchableOpacity>
+            </TouchableWithPopup>
         </View>
     );
 }

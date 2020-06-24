@@ -1,6 +1,6 @@
 import React, {Suspense} from 'react';
 import {NavigationScreenProp, withNavigation} from 'react-navigation';
-import {View, TouchableOpacity, ActivityIndicator, Platform} from 'react-native';
+import {View, ActivityIndicator, Platform} from 'react-native';
 import Text from '~/components/common/Text';
 import {MovieType} from '~/types/Movie';
 import LinearGradient from 'react-native-linear-gradient';
@@ -9,6 +9,7 @@ import styles from "~/screens/Home/components/popular-tv/style";
 import {useRessource} from "~/hooks/use-ressource";
 import {WIDTH} from "~/utils/dimensions";
 import {SharedElement} from "react-navigation-shared-element";
+import TouchableWithPopup from "~/components/common/touchable";
 
 function PopularTvItem({movie, navigation}: {
     movie: MovieType; navigation: NavigationScreenProp<any>;
@@ -30,7 +31,7 @@ function PopularTvItem({movie, navigation}: {
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity activeOpacity={0.7}
+            <TouchableWithPopup
                               onPress={() => navigation.navigate('detail', {'movie': movie})}
                               style={styles.imageWrapper}>
                 <Suspense fallback={
@@ -60,7 +61,7 @@ function PopularTvItem({movie, navigation}: {
                         {overview}
                     </Text>
                 </LinearGradient>
-            </TouchableOpacity>
+            </TouchableWithPopup>
         </View>
     );
 }
