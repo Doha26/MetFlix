@@ -11,8 +11,16 @@ import {useRessource} from "~/hooks/use-ressource";
 import {WIDTH} from "~/utils/dimensions";
 import TouchableWithPopup from "~/components/common/touchable";
 
-function PopularMovieItem({movie, navigation, onLongPress}: {
-    movie: MovieType; navigation: NavigationScreenProp<any>; onLongPress: (event:GestureResponderEvent) => void
+function PopularMovieItem({
+                              movie, navigation,
+                              onLongPress,
+                              absolute,
+                              absoluteItemStyle
+                          }: {
+    movie: MovieType; navigation: NavigationScreenProp<any>;
+    onLongPress?: (event: GestureResponderEvent, movieItem: MovieType) => void;
+    absolute?: boolean,
+    absoluteItemStyle?: any
 }) {
 
     const {
@@ -25,14 +33,25 @@ function PopularMovieItem({movie, navigation, onLongPress}: {
     //Get the poster_image of the current item
     const poster_image: string = useRessource({path: poster_path, size: 'w342'});
 
+    // HandlePress event and pass the selected movie
+    const handlePress = (event: GestureResponderEvent) => {
+        onLongPress ? onLongPress(event, movie) : null;
+    };
+
     // Use React Lazy loading to load images : usefull for slow network and big ressources sized
     const LazyImage = React.lazy(() => import('~/components/LazyImage/index'));
 
     return (
         <SharedElement id={`item.${id}.poster_path`}>
-            <View style={styles.container}>
+            <View style={absolute ? Object.assign({}, absoluteItemStyle, {
+                flex: 1,
+                width: (WIDTH / 3) + 5,
+                height: 250,
+                position: 'absolute',
+                zIndex: 1000,
+            }) : styles.container}>
                 <TouchableWithPopup
-                    onLongPress={onLongPress}
+                    onLongPress={handlePress}
                     onPress={() => navigation.navigate('detail', {'movie': movie})}
                     style={styles.imageWrapper}>
 

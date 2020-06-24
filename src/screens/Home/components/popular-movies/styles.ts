@@ -7,7 +7,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         width: (width / 3) + 5,
-        height: 250, marginTop: 10,
+        height: 250,
+        marginTop: 10,
     },
     imageWrapper: {
         flex: 1,

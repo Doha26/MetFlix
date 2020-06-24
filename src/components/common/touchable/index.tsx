@@ -32,8 +32,7 @@ const TouchableWithPopup = ({
     return (Platform.OS === 'android' && Platform.Version > 20
             ? (
                 <TouchableNativeFeedback
-                    onPress={() => setTimeout(onPress, 0)}
-                >
+                    onPress={() => setTimeout(onPress, 0)}>
                     {children}
                 </TouchableNativeFeedback>
             )

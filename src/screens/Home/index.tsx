@@ -25,7 +25,9 @@ import styles from "~/screens/Home/styles";
 import {useHeaderHeight} from "react-navigation-stack";
 import {SearchReducerType} from "~/types/SearchReducerType";
 import {BlurView} from "@react-native-community/blur";
-import {HEIGHT, WIDTH} from "~/utils/dimensions";
+import {MovieType} from "~/types/Movie";
+import PopularMovieItem from "~/screens/Home/components/popular-movies/PopularMovieItem";
+import {HEIGHT} from "~/utils/dimensions";
 
 const {searchStats, countResultTitle} = styles;
 
@@ -41,7 +43,21 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
     const [query, setQuery] = useState('');
     const [pendingSearch, setPendingSearch] = useState(false);
     const [itemPressed, setItemPressed] = useState(false);
-    
+
+    const defaultMovie: MovieType = {
+        id: "",
+        video: false,
+        title: '',
+        original_title: '',
+        vote_average: 0,
+        poster_path: '',
+        release_date: '',
+        overview: 'null',
+    };
+    const [selectedMovie, setSelectedMovie] = useState(defaultMovie);
+    const [selectedPositionX, setSelectedPositionX] = useState(0);
+    const [selectedPositionY, setSelectedPositionY] = useState(0);
+
     // Geting value from reux store to handle conditional rendering
     const {searching, has_results, search_results} = useSelector(({searchReducer}: { searchReducer: SearchReducerType }) => searchReducer);
 
@@ -81,19 +97,29 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
     };
 
     // when a movie is long pressed, display blur view
-    const onItemPressed = (event: GestureResponderEvent) => {
+    const onItemPressed = (event: GestureResponderEvent, movieItem: MovieType) => {
         setItemPressed(true);
+        setSelectedMovie(movieItem);
+        setSelectedPositionX(event.nativeEvent.locationX);
+        setSelectedPositionY(event.nativeEvent.pageY);
+
+        console.log(HEIGHT / 2);
+
         console.log(event);
     };
 
 
     const homeContent = (
         <View style={{marginTop: 20}}>
-            <Poster/>
+            {/* <Poster/> */}
             <PopularMovieList onLongPress={onItemPressed}/>
+            {/*
+
             <PopularTvList onLongPress={onItemPressed}/>
             <FamilyList onLongPress={onItemPressed}/>
             <DocumentaryList onLongPress={onItemPressed}/>
+
+            */}
         </View>
     );
 
@@ -111,7 +137,6 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
     );
 
     return (
-
         <>
             <View style={{
                 paddingHorizontal: 10,
@@ -152,7 +177,21 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
                     blurType="light"
                     blurAmount={3}>
                     <TouchableOpacity style={{flex: 1}} onPress={() => setItemPressed(false)}>
+                        <View style={{
+                            position: 'absolute',
+                            padding: 20,
+                            zIndex: 100,
+                            flexDirection: 'column',
+                            top: selectedPositionY,
+                            left: selectedPositionX
+                        }}>
+                            <View style={{backgroundColor: Colors.darkBlue, borderRadius: 10, height: 150, width: 300}}>
 
+                            </View>
+                            <PopularMovieItem movie={selectedMovie}
+                                              absolute={true}
+                                              absoluteItemStyle={{marginTop: 10}}/>
+                        </View>
                     </TouchableOpacity>
                 </BlurView> : null
             )}

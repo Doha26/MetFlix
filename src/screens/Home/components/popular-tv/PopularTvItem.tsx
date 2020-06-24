@@ -12,7 +12,7 @@ import {SharedElement} from "react-navigation-shared-element";
 import TouchableWithPopup from "~/components/common/touchable";
 
 function PopularTvItem({movie, navigation, onLongPress}: {
-    movie: MovieType; navigation: NavigationScreenProp<any>; onLongPress: (event: GestureResponderEvent) => void
+    movie: MovieType; navigation: NavigationScreenProp<any>; onLongPress?: (event: GestureResponderEvent) => void
 }) {
 
     const {

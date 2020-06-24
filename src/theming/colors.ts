@@ -5,6 +5,7 @@ const colors = {
   white: '#ffffff',
   pagination: '#7B7B7B',
   warning: '#F9AA33',
+  darkBlue:'rgba(1,18,30,0.8)',
   filterBlack: '#405467',
   black100:'rgba(0,0,0,0.7)',
   black40: 'rgba(0,0,0,0.1)',

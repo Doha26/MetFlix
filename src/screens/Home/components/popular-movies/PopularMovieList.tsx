@@ -7,7 +7,7 @@ import useFetch from "~/hooks/use-fetch";
 import {THEMOVIEDB_QUERY_TYPE} from "~/constants";
 import {GestureResponderEvent} from "react-native";
 
-const PopularMovieList = ({onLongPress}: { onLongPress: (event:GestureResponderEvent) => void }) => {
+const PopularMovieList = ({onLongPress}: { onLongPress: (event: GestureResponderEvent, movieItem: MovieType) => void }) => {
 
     const {response, loading} = useFetch({path: THEMOVIEDB_QUERY_TYPE.POPULAR_MOVIES});
     // @ts-ignore
@@ -24,7 +24,8 @@ const PopularMovieList = ({onLongPress}: { onLongPress: (event:GestureResponderE
                     }}
                     keyExtractor={({id}: { id: string }) => String(id)}
                     subtitle="Most popular movies in the world"
-                    renderItem={({item}: { item: MovieType }) => <PopularMovieItem movie={item} onLongPress={onLongPress}/>}
+                    renderItem={({item}: { item: MovieType }) => <PopularMovieItem movie={item}
+                                                                                   onLongPress={onLongPress}/>}
                 />
             )
     );
