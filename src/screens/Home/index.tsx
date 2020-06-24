@@ -115,15 +115,12 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
 
     const homeContent = (
         <View style={{marginTop: 20}}>
-            {/* <Poster/> */}
+            <Poster/>
             <PopularMovieList onLongPress={onItemPressed}/>
-            {/*
-
             <PopularTvList onLongPress={onItemPressed}/>
             <FamilyList onLongPress={onItemPressed}/>
             <DocumentaryList onLongPress={onItemPressed}/>
 
-            */}
         </View>
     );
 

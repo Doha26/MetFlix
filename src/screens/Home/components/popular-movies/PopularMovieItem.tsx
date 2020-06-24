@@ -33,13 +33,15 @@ function PopularMovieItem({
     //Get the poster_image of the current item
     const poster_image: string = useRessource({path: poster_path, size: 'w342'});
 
+    // Use React Lazy loading to load images : usefull for slow network and big ressources sized
+    const LazyImage = React.lazy(() => import('~/components/LazyImage/index'));
+
     // HandlePress event and pass the selected movie
     const handlePress = (event: GestureResponderEvent) => {
         onLongPress ? onLongPress(event, movie) : null;
     };
 
-    // Use React Lazy loading to load images : usefull for slow network and big ressources sized
-    const LazyImage = React.lazy(() => import('~/components/LazyImage/index'));
+
 
     return (
         <SharedElement id={`item.${id}.poster_path`}>

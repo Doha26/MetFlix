@@ -7,7 +7,7 @@ import useFetch from "~/hooks/use-fetch";
 import {THEMOVIEDB_QUERY_TYPE} from "~/constants";
 import {GestureResponderEvent} from "react-native";
 
-const PopularTvList = ({onLongPress}: { onLongPress: (event: GestureResponderEvent) => void }) => {
+const PopularTvList = ({onLongPress}: { onLongPress: (event: GestureResponderEvent , movieItem: MovieType) => void }) => {
 
     const {response, loading} = useFetch({path: THEMOVIEDB_QUERY_TYPE.POPULAR_TV});
 

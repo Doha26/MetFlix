@@ -8,7 +8,7 @@ import {QueryResponse} from "~/types/QueryResponse";
 import {THEMOVIEDB_QUERY_TYPE} from "~/constants";
 import {GestureResponderEvent} from "react-native";
 
-const FamilyList = ({onLongPress}:{onLongPress:(event: GestureResponderEvent)=>void}) => {
+const FamilyList = ({onLongPress}:{onLongPress:(event: GestureResponderEvent, movieItem: MovieType)=>void}) => {
 
     const family_genres_movies: any = [], family_flag = 'family';
 
