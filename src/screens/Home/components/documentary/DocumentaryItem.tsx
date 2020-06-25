@@ -14,11 +14,13 @@ import TouchableWithPopup from "~/components/common/touchable";
 function DocumentaryItem({movie,
                              navigation,
                              onLongPress,
+                             onPress,
                              absolute,
                              absoluteItemStyle
                          }: {
     movie: MovieType; navigation: NavigationScreenProp<any>;
     onLongPress?: (event: GestureResponderEvent, movieItem: MovieType) => void;
+    onPress?: (movieItem: MovieType) => void;
     absolute?: boolean,
     absoluteItemStyle?: any
 }) {
@@ -37,8 +39,13 @@ function DocumentaryItem({movie,
 
 
     // HandlePress event and pass the selected movie
-    const handlePress = (event: GestureResponderEvent) => {
+    const handleOnLongPress = (event: GestureResponderEvent) => {
         onLongPress ? onLongPress(event, movie) : null;
+    };
+
+    // Handle onPress
+    const handleOnPress = (movieItem: MovieType) => {
+        onPress ? onPress(movieItem) : null
     };
 
     return (
@@ -50,8 +57,8 @@ function DocumentaryItem({movie,
             zIndex: 1000,
         }) : styles.container}>
             <TouchableWithPopup
-                onLongPress={handlePress}
-                onPress={() => navigation.navigate('detail', {'movie': movie})}
+                onLongPress={handleOnLongPress}
+                onPress={() => absolute ? handleOnPress(movie): navigation.navigate('detail', {'movie': movie})}
                 style={styles.imageWrapper}>
                 <Suspense fallback={
                     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>

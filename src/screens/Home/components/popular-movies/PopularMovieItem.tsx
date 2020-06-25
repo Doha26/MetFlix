@@ -11,18 +11,19 @@ import {useRessource} from "~/hooks/use-ressource";
 import {WIDTH} from "~/utils/dimensions";
 import TouchableWithPopup from "~/components/common/touchable";
 
-function PopularMovieItem({
-                              movie, navigation,
-                              onLongPress,
-                              absolute,
-                              absoluteItemStyle
-                          }: {
+const PopularMovieItem = React.memo(({
+                                         movie, navigation,
+                                         onLongPress,
+                                         onPress,
+                                         absolute,
+                                         absoluteItemStyle,
+                                     }: {
     movie: MovieType; navigation: NavigationScreenProp<any>;
     onLongPress?: (event: GestureResponderEvent, movieItem: MovieType) => void;
+    onPress?: (movieItem: MovieType) => void;
     absolute?: boolean,
     absoluteItemStyle?: any
-}) {
-
+}) => {
     const {
         id,
         original_title,
@@ -37,11 +38,13 @@ function PopularMovieItem({
     const LazyImage = React.lazy(() => import('~/components/LazyImage/index'));
 
     // HandlePress event and pass the selected movie
-    const handlePress = (event: GestureResponderEvent) => {
+    const handleOnLongPress = (event: GestureResponderEvent) => {
         onLongPress ? onLongPress(event, movie) : null;
     };
 
-
+    const handleOnPress = (movieItem:MovieType) => {
+        onPress ? onPress(movieItem) : null
+    };
 
     return (
         <SharedElement id={`item.${id}.poster_path`}>
@@ -53,8 +56,8 @@ function PopularMovieItem({
                 zIndex: 1000,
             }) : styles.container}>
                 <TouchableWithPopup
-                    onLongPress={handlePress}
-                    onPress={() => navigation.navigate('detail', {'movie': movie})}
+                    onLongPress={handleOnLongPress}
+                    onPress={() => absolute ? handleOnPress(movie) : navigation.navigate('detail', {'movie': movie})}
                     style={styles.imageWrapper}>
 
                     <Suspense fallback={
@@ -89,6 +92,6 @@ function PopularMovieItem({
             </View>
         </SharedElement>
     );
-}
+});
 
 export default withNavigation(PopularMovieItem);

@@ -1,10 +1,8 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useState} from 'react';
 import Container from '~/components/common/Container';
 import {
     ActivityIndicator,
-    findNodeHandle,
     GestureResponderEvent,
-    InteractionManager,
     Platform, TouchableOpacity,
     View
 } from 'react-native';
@@ -100,6 +98,7 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
         }
     };
 
+
     // when a movie is long pressed, display blur view
     const onItemPressed = (event: GestureResponderEvent, movieItem: MovieType) => {
         setItemPressed(true);
@@ -107,7 +106,6 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
         setSelectedPositionX(event.nativeEvent.locationX);
 
         const offsetY = HEIGHT - event.nativeEvent.pageY;
-        console.log("offset => " + offsetY);
 
         if (offsetY < HEIGHT / 2) { // If user press long on the Botom hallf part of the screen
             setShouldRenderItemTop(true); // Render popup menu with Item on top
@@ -116,10 +114,13 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
             setShouldRenderItemTop(false); // Render popup menu with Item on bottom
             setSelectedPositionY(event.nativeEvent.pageY);
         }
-
-        //console.log(event);
     };
 
+    // Navigate to the detail page when user click on the pressed button
+    const handleOnPress = (movieItem: MovieType) => {
+        setItemPressed(false);
+        navigation.navigate('detail', {'movie': movieItem})
+    };
 
     const homeContent = (
         <View style={{marginTop: 20}}>
@@ -128,7 +129,6 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
             <PopularTvList onLongPress={onItemPressed}/>
             <FamilyList onLongPress={onItemPressed}/>
             <DocumentaryList onLongPress={onItemPressed}/>
-
         </View>
     );
 
@@ -145,11 +145,17 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
         </View>
     );
 
+
+    /* Call this method to render content if user cliked on the half
+    top section of the screen to better display the menu */
+
     const renderMenuWithItemMovieOnTop = (
         <AuxHOC>
-            <PopularMovieItem movie={selectedMovie}
-                              absoluteItemStyle={{top: -260}}
-                              absolute={true}/>
+            <PopularMovieItem
+                onPress={handleOnPress}
+                movie={selectedMovie}
+                absoluteItemStyle={{top: -250}}
+                absolute={true}/>
             <View style={{backgroundColor: Colors.darkBlue, borderRadius: 10, marginTop: 10, width: 300}}>
                 {menuItems.map((item, index) => (
                     <AuxHOC key={item.id}>
@@ -173,6 +179,10 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
         </AuxHOC>
     );
 
+
+    /* Call this method to render content if user cliked on the half
+     bottom section of the screen to better display the menu */
+
     const renderMenuWithItemMovieOnBottom = (
         <>
             <View style={{backgroundColor: Colors.darkBlue, borderRadius: 10, width: 300}}>
@@ -195,9 +205,11 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
                     </AuxHOC>
                 ))}
             </View>
-            <PopularMovieItem movie={selectedMovie}
-                              absolute={true}
-                              absoluteItemStyle={{marginTop: 10}}/>
+            <PopularMovieItem
+                onPress={handleOnPress}
+                movie={selectedMovie}
+                absolute={true}
+                absoluteItemStyle={{marginTop: 10}}/>
         </>
     );
 
