@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import {Divider, ListItem, SearchBar} from 'react-native-elements';
 import {NavigationScreenProp} from 'react-navigation';
+// @ts-ignore
 import TouchableScale from 'react-native-touchable-scale';
 import Poster from '~/screens/Home/components/poster/Poster';
 import PopularMovieList from '~/screens/Home/components/popular-movies/PopularMovieList';
@@ -104,7 +105,6 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
         setItemPressed(true);
         setSelectedMovie(movieItem);
         setSelectedPositionX(event.nativeEvent.locationX);
-
         const offsetY = HEIGHT - event.nativeEvent.pageY;
 
         if (offsetY < HEIGHT / 2) { // If user press long on the Botom hallf part of the screen

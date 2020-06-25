@@ -28,11 +28,11 @@
 - [ ] Light and Dark theme Switcher for Multi-theming support.
 
 
- ## Demo 
- ![App-demo](./src/screenshots/demo.gif)
- 
 ##  IOS Preview
 ![App-demo](./src/screenshots/home_ios.png)
+
+##  IOS Preview
+![App-demo](./src/screenshots/on_item_long_press.png)
 
 ##  ANDROID Preview
 ![App-demo](./src/screenshots/home_android.png)
