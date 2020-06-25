@@ -158,7 +158,7 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
                 movie={selectedMovie}
                 absoluteItemStyle={styles.absoluteItemStyle}
                 absolute={true}/>
-            <View style={{backgroundColor: Colors.darkBlue, borderRadius: 10, marginTop: 10, width: 300}}>
+            <View style={styles.absoluteBottomMenuStyle}>
                 {menuItems.map((item, index) => (
                     <AuxHOC key={item.id}>
                         <ListItem

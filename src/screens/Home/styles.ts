@@ -23,6 +23,12 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginTop:270,
         width: 300
+    },
+    absoluteBottomMenuStyle:{
+        backgroundColor: Colors.darkBlue,
+        borderRadius: 10,
+        marginTop: 10,
+        width: 300
     }
 });
 
