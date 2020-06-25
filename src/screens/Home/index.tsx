@@ -105,9 +105,11 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
         setItemPressed(true);
         setSelectedMovie(movieItem);
         setSelectedPositionX(event.nativeEvent.locationX);
+
+        // this value allows to check wether user clicked on the Half bottom or not
         const offsetY = HEIGHT - event.nativeEvent.pageY;
 
-        if (offsetY < HEIGHT / 2) { // If user press long on the Botom hallf part of the screen
+        if (offsetY < HEIGHT / 2) { // If user press long on the Botom half part of the screen
             setShouldRenderItemTop(true); // Render popup menu with Item on top
             setSelectedPositionY(event.nativeEvent.pageY - 160);
         } else {
@@ -154,7 +156,7 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
             <PopularMovieItem
                 onPress={handleOnPress}
                 movie={selectedMovie}
-                absoluteItemStyle={{top: -250}}
+                absoluteItemStyle={styles.absoluteItemStyle}
                 absolute={true}/>
             <View style={{backgroundColor: Colors.darkBlue, borderRadius: 10, marginTop: 10, width: 300}}>
                 {menuItems.map((item, index) => (
@@ -176,6 +178,7 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
                     </AuxHOC>
                 ))}
             </View>
+
         </AuxHOC>
     );
 
@@ -185,7 +188,13 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
 
     const renderMenuWithItemMovieOnBottom = (
         <>
-            <View style={{backgroundColor: Colors.darkBlue, borderRadius: 10, width: 300}}>
+            <PopularMovieItem
+                onPress={handleOnPress}
+                movie={selectedMovie}
+                absolute={true}
+                absoluteItemStyle={{marginTop: 10}}/>
+
+            <View style={styles.absoluteMenuStyle}>
                 {menuItems.map((item, index) => (
                     <AuxHOC key={item.id}>
                         <ListItem
@@ -205,11 +214,6 @@ const Home = ({navigation}: { navigation: NavigationScreenProp<any> }) => {
                     </AuxHOC>
                 ))}
             </View>
-            <PopularMovieItem
-                onPress={handleOnPress}
-                movie={selectedMovie}
-                absolute={true}
-                absoluteItemStyle={{marginTop: 10}}/>
         </>
     );
 

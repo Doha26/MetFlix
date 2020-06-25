@@ -14,6 +14,15 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         marginTop: 5,
         marginHorizontal: 10
+    },
+    absoluteItemStyle:{
+        top:-250
+    },
+    absoluteMenuStyle:{
+        backgroundColor: Colors.darkBlue,
+        borderRadius: 10,
+        marginTop:270,
+        width: 300
     }
 });
 
