@@ -5,7 +5,7 @@
 
 # MetFlix 
 
->I have been asked to build a proptotype of q functionnal movies react-native application. I dicided to call it MetFlix
+>I have been asked to build a proptotype of a functionnal movies react-native application. I dicided to call it MetFlix
  This App is built on top of React Native with React.JS (Used React Hooks) and Typescript. 
  
  ## Results
