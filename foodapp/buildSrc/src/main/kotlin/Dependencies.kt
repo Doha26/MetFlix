@@ -24,6 +24,7 @@ object Dependencies {
     const val sdp = "com.intuit.sdp:sdp-android:1.0.6"
     const val glide = "com.github.bumptech.glide:glide:4.10.0"
     const val multidex = "androidx.multidex:multidex:2.0.1"
+    const val smoothBottomBar = "com.github.ibrahimsn98:SmoothBottomBar:1.7.6"
 }
 
 object Lifecycle {

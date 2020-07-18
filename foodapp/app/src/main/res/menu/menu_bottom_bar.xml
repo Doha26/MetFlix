@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.pavel.food_app.ui.main.MainActivity">
+    <item
+        android:id="@+id/first_fragment"
+        android:title="@string/menu_home"
+        android:icon="@drawable/ic_dashboard_white_24dp"/>
+
+    <item
+        android:id="@+id/second_fragment"
+        android:title="@string/menu_evaluate"
+        android:icon="@drawable/ic_multiline_chart_white_24dp"/>
+</menu>
