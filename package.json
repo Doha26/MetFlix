@@ -22,7 +22,7 @@
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/react-native-orientation": "^5.0.1",
     "@types/react-native-video": "^5.0.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "babel-plugin-module-resolver": "^4.0.0",
     "moment": "^2.26.0",
     "prop-types": "^15.7.2",
